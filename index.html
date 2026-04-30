@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>蒙特梭利早教指南</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-soft: #f4f0e6;
+    --ink: #1f1d1a;
+    --ink-soft: #5c574e;
+    --ink-faint: #8a8478;
+    --line: #d8d2c4;
+    --line-soft: #ebe6da;
+    --accent: #1a4d3a;
+    --accent-light: #e8f0ec;
+    --pl: #e8a4b5;
+    --pl-bg: #fdf0f3;
+    --pl-ink: #8c2d44;
+    --sen: #d9c469;
+    --sen-bg: #fbf6e1;
+    --sen-ink: #6b5611;
+    --lang: #8fb9d4;
+    --lang-bg: #eaf3f8;
+    --lang-ink: #1f4f6e;
+    --math: #c54848;
+    --math-bg: #fbeaea;
+    --math-ink: #7a1d1d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    height: 100%;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* App Container - Mobile First */
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  /* Header */
+  .header {
+    background: var(--accent);
+    color: white;
+    padding: 16px 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .header p {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+
+  /* Page Content */
+  .page-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 16px 80px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tab Content */
+  .tab-page {
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .tab-page.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Page Title */
+  .page-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--line);
+  }
+  .page-title .en {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* Cards */
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Period Badge */
+  .period-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .period-badge.language { background: var(--lang-bg); color: var(--lang-ink); }
+  .period-badge.movement { background: var(--accent-light); color: var(--accent); }
+  .period-badge.order { background: var(--sen-bg); color: var(--sen-ink); }
+  .period-badge.sensory { background: var(--pl-bg); color: var(--pl-ink); }
+  .period-badge.independent { background: var(--math-bg); color: var(--math-ink); }
+
+  /* Timeline */
+  .timeline-item {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .timeline-age {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .timeline-content {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Activity Card */
+  .activity-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .activity-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .activity-icon {
+    font-size: 20px;
+  }
+  .activity-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .activity-age {
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 10px;
+  }
+  .activity-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .activity-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .activity-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+    background: var(--bg-soft);
+    color: var(--ink-soft);
+    border-radius: 10px;
+  }
+
+  /* List */
+  .list-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .list-item:last-child { border-bottom: none; }
+  .list-item strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Quote Box */
+  .quote-box {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .quote-text {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .quote-author {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 8px;
+  }
+
+  /* Highlight Box */
+  .highlight-box {
+    background: linear-gradient(135deg, #fef9f0 0%, #fdf6e8 100%);
+    border: 1px solid #e8dcc8;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0;
+  }
+  .highlight-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .highlight-text {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* EYFS Card */
+  .eyfs-card {
+    background: linear-gradient(135deg, #f3f8fb 0%, #e8f1f7 100%);
+    border: 1px solid #c8dceb;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .eyfs-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--lang-ink);
+    margin-bottom: 10px;
+  }
+  .eyfs-domain {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #c8dceb;
+  }
+  .eyfs-domain:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .eyfs-domain-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--lang-ink);
+    margin-bottom: 6px;
+  }
+
+  /* Tab Bar - Mobile Fixed Bottom */
+  .tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--line);
+    display: flex;
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  .tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    min-height: 56px;
+    color: var(--ink-faint);
+    background: transparent;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .tab-item.active {
+    color: var(--accent);
+  }
+  .tab-item.active {
+    color: var(--accent);
+  }
+  .tab-icon {
+    font-size: 22px;
+    margin-bottom: 2px;
+  }
+  .tab-text {
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  /* Sub Tab Bar for Book Section */
+  .sub-tab-bar {
+    display: flex;
+    background: var(--bg-soft);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 16px;
+    gap: 4px;
+  }
+  .sub-tab {
+    flex: 1;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .sub-tab.active {
+    background: white;
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .sub-content {
+    display: none;
+  }
+  .sub-content.active {
+    display: block;
+    animation: fadeIn 0.2s ease;
+  }
+
+  /* Intro Box */
+  .intro-box {
+    background: linear-gradient(135deg, var(--bg-soft) 0%, white 100%);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .intro-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Checklist */
+  .check-item {
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .check-item::before {
+    content: "□";
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  /* Principle Card */
+  .principle-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .principle-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  /* Action Section */
+  .action-section {
+    margin-bottom: 16px;
+  }
+  .action-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--accent);
+  }
+  .action-list {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 20px;
+  }
+  .action-content {
+    flex: 1;
+  }
+  .action-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .action-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* Game Grid */
+  .game-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .game-item {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .game-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .game-age {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+  .game-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .game-key {
+    font-size: 11px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* Mind Card */
+  .mind-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .mind-card.warning {
+    background: #fef9f0;
+    border-color: #e8dcc8;
+  }
+  .mind-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .mind-quote {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .mind-desc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .mind-item {
+    font-size: 12px;
+    color: var(--ink-soft);
+    padding: 6px 0 6px 14px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .mind-item::before {
+    content: "›";
+    position: absolute;
+    left: 2px;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  /* Final Quote */
+  .final-quote {
+    background: linear-gradient(135deg, var(--bg-soft) 0%, #ebe6da 100%);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .final-text {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  /* Scrollbar hide */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  /* ============================================
+     RESPONSIVE STYLES - Tablet and Desktop
+     ============================================ */
+  @media (min-width: 768px) {
+    .app {
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      padding: 24px 32px;
+    }
+    .header h1 {
+      font-size: 24px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+
+    .page-content {
+      padding: 24px 32px 100px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .card {
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 16px;
+    }
+    .card-desc {
+      font-size: 14px;
+    }
+
+    .activity-card {
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .activity-name {
+      font-size: 16px;
+    }
+    .activity-desc {
+      font-size: 14px;
+    }
+
+    .timeline-item {
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .timeline-age {
+      font-size: 15px;
+    }
+    .timeline-content {
+      font-size: 14px;
+    }
+
+    .quote-box {
+      padding: 18px 20px;
+      margin: 16px 0;
+    }
+    .quote-text {
+      font-size: 14px;
+    }
+
+    .intro-box {
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .intro-text {
+      font-size: 14px;
+    }
+
+    .sub-tab-bar {
+      padding: 6px;
+      margin-bottom: 20px;
+    }
+    .sub-tab {
+      padding: 10px;
+      font-size: 13px;
+    }
+
+    .action-title {
+      font-size: 16px;
+      padding-left: 12px;
+    }
+    .action-item {
+      padding: 14px 16px;
+    }
+    .action-label {
+      font-size: 14px;
+    }
+    .action-desc {
+      font-size: 13px;
+    }
+
+    .game-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .game-item {
+      padding: 16px;
+    }
+    .game-name {
+      font-size: 15px;
+    }
+    .game-desc {
+      font-size: 13px;
+    }
+
+    .mind-card {
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .mind-title {
+      font-size: 14px;
+    }
+    .mind-quote {
+      font-size: 14px;
+      padding: 12px 16px;
+    }
+    .mind-desc {
+      font-size: 13px;
+    }
+    .mind-item {
+      font-size: 13px;
+      padding: 8px 0 8px 18px;
+    }
+
+    .final-quote {
+      padding: 24px;
+    }
+    .final-text {
+      font-size: 15px;
+    }
+
+    .tab-icon {
+      font-size: 26px;
+    }
+    .tab-text {
+      font-size: 12px;
+    }
+    .tab-item {
+      padding: 12px;
+    }
+  }
+
+  /* Desktop - larger screens */
+  @media (min-width: 1024px) {
+    .app {
+      max-width: 900px;
+      margin: 24px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      height: auto;
+      min-height: calc(100vh - 48px);
+    }
+
+    .header {
+      padding: 28px 40px;
+    }
+    .header h1 {
+      font-size: 28px;
+    }
+    .header p {
+      font-size: 15px;
+    }
+
+    .page-content {
+      padding: 32px 40px 120px;
+    }
+
+    .page-title {
+      font-size: 26px;
+    }
+
+    .section-title {
+      font-size: 20px;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .card {
+      padding: 24px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .activity-card {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .timeline-item {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .game-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .game-item {
+      padding: 18px;
+      border-radius: 12px;
+    }
+
+    .mind-card {
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .final-quote {
+      padding: 28px 32px;
+      border-radius: 12px;
+    }
+
+    .tab-bar {
+      border-radius: 0 0 16px 16px;
+    }
+
+    /* Show top navigation on very large screens */
+    @media (min-width: 1200px) {
+      .app {
+        max-width: 1000px;
+      }
+
+      .page-content {
+        padding: 40px 48px 140px;
+      }
+    }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <div class="header">
+    <h1>蒙特梭利早教指南</h1>
+    <p>18-36个月 家庭教育</p>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-content">
+
+    <!-- 首页 -->
+    <div class="tab-page active" id="page-home">
+      <div class="intro-box">
+        <div class="intro-text">
+          <strong>写在前面：</strong>18-36个月是孩子发展最密集的时期。你的任务不是"教"孩子，而是<strong>准备环境</strong>——让孩子的内在潜能得以实现。
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">核心养育原则</div>
+        <div class="card">
+          <div class="card-title">做不说教</div>
+          <div class="card-desc">示范一次，然后让孩子自己来。帮忙30秒，不如等孩子做10分钟。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">真实大于玩具</div>
+          <div class="card-desc">木勺、陶碗比塑料玩具更有价值，因为它们有重量、有质感。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">慢就是快</div>
+          <div class="card-desc">这个阶段孩子的工作就是"慢慢做事"。赶时间时抱起孩子就走，不如提前10分钟开始。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">语言要精确</div>
+          <div class="card-desc">不说"花花"，说"玫瑰花"或"郁金香"。词汇越精确，语言发展越丰富。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">秩序是安全感</div>
+          <div class="card-desc">固定的生活节奏是孩子最重要的心理营养。</div>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        <div class="quote-text">"永远不要帮助一个孩子去做他自己说'我自己来'就能做的事。"</div>
+        <div class="quote-author">—— 玛丽亚·蒙台梭利</div>
+      </div>
+    </div>
+
+    <!-- 月龄 -->
+    <div class="tab-page" id="page-age">
+      <div class="page-title">各月龄发展轨迹</div>
+
+      <div class="section">
+        <div class="section-title">敏感期一览</div>
+        <div class="card">
+          <span class="period-badge language">语言</span>
+          <div class="card-title" style="margin-top:8px;">语言敏感期</div>
+          <div class="card-desc">0-6岁（爆发期2-4岁）每天可学10-15个新词</div>
+        </div>
+        <div class="card">
+          <span class="period-badge movement">动作</span>
+          <div class="card-title" style="margin-top:8px;">动作精细化敏感期</div>
+          <div class="card-desc">1.5-4岁（关键期1.5-3岁）走、跑、跳、手部精细动作</div>
+        </div>
+        <div class="card">
+          <span class="period-badge order">秩序</span>
+          <div class="card-title" style="margin-top:8px;">秩序感敏感期</div>
+          <div class="card-desc">0-6岁（高峰2-4岁）对顺序、位置有强烈需求</div>
+        </div>
+        <div class="card">
+          <span class="period-badge sensory">感官</span>
+          <div class="card-title" style="margin-top:8px;">感官精致化敏感期</div>
+          <div class="card-desc">2.5-6岁手和眼是"心智的肉体阶段"</div>
+        </div>
+        <div class="card">
+          <span class="period-badge independent">独立</span>
+          <div class="card-title" style="margin-top:8px;">独立性敏感期</div>
+          <div class="card-desc">2-4岁"我自己来"——渴望独立完成力所能及的事</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">各阶段发展</div>
+
+        <div class="timeline-item">
+          <div class="timeline-age">18-24个月</div>
+          <div class="timeline-content">
+            <strong>语言：</strong>10-50词，简单指令<br>
+            <strong>动作：</strong>走稳，蹲下站起<br>
+            <strong>秩序：</strong>对位置开始有需求<br>
+            <strong>独立：</strong>用手指指想要的东西
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-age">24-30个月</div>
+          <div class="timeline-content">
+            <strong>语言：</strong>100-300词，短句<br>
+            <strong>动作：</strong>跑稳，用勺子吃（可能洒）<br>
+            <strong>秩序：</strong>高峰期——"必须按顺序"<br>
+            <strong>独立：</strong>"我自己来"最常说
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-age">30-36个月</div>
+          <div class="timeline-content">
+            <strong>语言：</strong>300词以上，完整句子<br>
+            <strong>动作：</strong>双脚跳，安全剪刀<br>
+            <strong>秩序：</strong>仍强烈但能接受变通<br>
+            <strong>社交：</strong>简单合作游戏萌芽
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 领域 -->
+    <div class="tab-page" id="page-domain">
+      <div class="page-title">四大发展领域</div>
+
+      <!-- 日常生活 -->
+      <div class="section">
+        <div class="section-title">🏠 日常生活</div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🚶</span>
+            <span class="activity-name">走线</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">胶带贴直线，赤脚沿线走。发展平衡感和专注力。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">平衡</span>
+            <span class="activity-tag">专注</span>
+            <span class="activity-tag">5-10分钟</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">💧</span>
+            <span class="activity-name">倒水</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">两个小杯子来回倒。底下铺毛巾防洒。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">手眼协调</span>
+            <span class="activity-tag">专注</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🧼</span>
+            <span class="activity-name">洗手</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">固定步骤：湿手→关水→搓手→开水→冲水→关水→擦干</div>
+          <div class="activity-tags">
+            <span class="activity-tag">秩序感</span>
+            <span class="activity-tag">自理</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👕</span>
+            <span class="activity-name">衣饰框</span>
+            <span class="activity-age">24个月+</span>
+          </div>
+          <div class="activity-desc">按扣→纽扣→拉链→粘扣→系带</div>
+          <div class="activity-tags">
+            <span class="activity-tag">精细动作</span>
+            <span class="activity-tag">独立性</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🍳</span>
+            <span class="activity-name">厨房帮手</span>
+            <span class="activity-age">24个月+</span>
+          </div>
+          <div class="activity-desc">剥鸡蛋、剥豆子、洗菜、搅拌。真的做，不是表演。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">独立性</span>
+            <span class="activity-tag">责任感</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 感官 -->
+      <div class="section">
+        <div class="section-title">👁 感官教育</div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👐</span>
+            <span class="activity-name">触摸袋</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">布袋里放不同材质物品，闭眼摸，说出是什么。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">触觉</span>
+            <span class="activity-tag">语言</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🎨</span>
+            <span class="activity-name">颜色分类</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">红黄蓝三种颜色，按颜色分到碗里。逐渐增加颜色。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">颜色识别</span>
+            <span class="activity-tag">分类</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🧱</span>
+            <span class="activity-name">套杯/套盒</span>
+            <span class="activity-age">18个月+</span>
+          </div>
+          <div class="activity-desc">大小不同的杯子，从大到小叠起来。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">大小序列</span>
+            <span class="activity-tag">视觉</span>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🔊</span>
+            <span class="activity-name">声音配对</span>
+            <span class="activity-age">24个月+</span>
+          </div>
+          <div class="activity-desc">瓶子装不同东西（米/绿豆/沙子），摇晃配对。</div>
+          <div class="activity-tags">
+            <span class="activity-tag">听觉</span>
+            <span class="activity-tag">专注</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 语言 -->
+      <div class="section">
+        <div class="section-title">💬 语言发展</div>
+        <div class="card">
+          <div class="card-title">命名而非考问</div>
+          <div class="card-desc">指着苹果说"这是苹果"，不问"这是什么？"减少压力。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">扩展而非纠正</div>
+          <div class="card-desc">孩子说"狗狗跑"，你回应"那只棕色的大狗跑得很快！"</div>
+        </div>
+        <div class="card">
+          <div class="card-title">描述而非命令</div>
+          <div class="card-desc">说"我看到你把书放回去了"，不说"把书放好！"</div>
+        </div>
+        <div class="card">
+          <div class="card-title">等待回应</div>
+          <div class="card-desc">问完问题后等3-5秒，给孩子组织语言的时间。</div>
+        </div>
+      </div>
+
+      <!-- 数学 -->
+      <div class="section">
+        <div class="section-title">🔢 数学启蒙</div>
+        <div class="card">
+          <div class="card-title">数数在生活</div>
+          <div class="card-desc">"你有1、2、3个苹果"、"上楼跨1、2、3步"。嵌入日常。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">大小排序</div>
+          <div class="card-desc">大小不同的石头或积木，按从大到小排序。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">配对游戏</div>
+          <div class="card-desc">袜子配对、鞋配对、纽扣配对。最简单的逻辑。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">形状探索</div>
+          <div class="card-desc">"窗户是方形"、"杯子是圆形的"。在家里找形状。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 实践 -->
+    <div class="tab-page" id="page-practice">
+      <div class="page-title">家庭实践指导</div>
+      <div class="intro-box">
+        <div class="intro-text">提炼自《家庭中的儿童》，可直接操作。如有疑惑再回看书。</div>
+      </div>
+
+      <!-- 子标签切换 -->
+      <div class="sub-tab-bar">
+        <button class="sub-tab active" onclick="switchSubTab('env')">环境</button>
+        <button class="sub-tab" onclick="switchSubTab('games')">游戏</button>
+        <button class="sub-tab" onclick="switchSubTab('mind')">思想</button>
+      </div>
+
+      <!-- 环境 -->
+      <div class="sub-content active" id="sub-env">
+        <div class="section">
+          <div class="section-title">一、孩子专属活动区</div>
+          <div class="action-list">
+            <div class="action-item">
+              <span class="action-num">1</span>
+              <div class="action-content">
+                <div class="action-label">低矮的架子</div>
+                <div class="action-desc">孩子能自己够到，不需要大人帮忙拿取和放回</div>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-num">2</span>
+              <div class="action-content">
+                <div class="action-label">适合尺寸的家具</div>
+                <div class="action-desc">小桌子小椅子，洗手台旁放小凳子</div>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-num">3</span>
+              <div class="action-content">
+                <div class="action-label">固定工作空间</div>
+                <div class="action-desc">家里一个角落，铺地垫，摆孩子可独立取用的物品</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">二、真实物品</div>
+          <div class="action-list">
+            <div class="action-item">
+              <span class="action-num">厨</span>
+              <div class="action-content">
+                <div class="action-label">厨房用品</div>
+                <div class="action-desc">小木勺、小刷子、小抹布、小扫帚</div>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-num">日</span>
+              <div class="action-content">
+                <div class="action-label">日常用品</div>
+                <div class="action-desc">小水壶、小碗、小杯子、安全剪刀</div>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-num">自然</span>
+              <div class="action-content">
+                <div class="action-label">自然物品</div>
+                <div class="action-desc">石头、贝壳、树叶、木块、纽扣、羽毛</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">检查清单</div>
+          <div class="card">
+            <div class="check-item">孩子能自己拿到属于他的物品吗？</div>
+            <div class="check-item">物品用完后能放回原位吗？</div>
+            <div class="check-item">有适合孩子尺寸的家具吗？</div>
+            <div class="check-item">提供的是真实物品吗？</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 游戏 -->
+      <div class="sub-content" id="sub-games">
+        <div class="section">
+          <div class="section-title">日常生活类</div>
+          <div class="game-grid">
+            <div class="game-item">
+              <div class="game-name">倒水游戏</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">两个小杯子来回倒，底下铺毛巾。</div>
+              <div class="game-key">关键词：专注、手眼协调</div>
+            </div>
+            <div class="game-item">
+              <div class="game-name">剥食物</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">剥桔子瓣、剥豆子、剥鸡蛋壳。剥完全家人吃。</div>
+              <div class="game-key">关键词：手指力量、成就感</div>
+            </div>
+            <div class="game-item">
+              <div class="game-name">洗手工作</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">固定步骤：湿手→搓手→冲水→擦干</div>
+              <div class="game-key">关键词：秩序感、自理</div>
+            </div>
+            <div class="game-item">
+              <div class="game-name">走线</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">胶带贴直线，赤脚沿线走。5-10分钟。</div>
+              <div class="game-key">关键词：平衡、专注</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">感官探索类</div>
+          <div class="game-grid">
+            <div class="game-item">
+              <div class="game-name">触摸袋</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">不同材质物品（光滑/粗糙/软/硬），闭眼摸。</div>
+              <div class="game-key">关键词：触觉、语言</div>
+            </div>
+            <div class="game-item">
+              <div class="game-name">颜色分类</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">红黄蓝，按颜色分到碗里。</div>
+              <div class="game-key">关键词：颜色、分类</div>
+            </div>
+            <div class="game-item">
+              <div class="game-name">套杯/套盒</div>
+              <span class="game-age">18个月+</span>
+              <div class="game-desc">大小不同，从大到小叠。</div>
+              <div class="game-key">关键词：大小序列</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">活动原则</div>
+          <div class="card">
+            <div class="check-item">示范一次后，给孩子独立完成的空间？</div>
+            <div class="check-item">孩子专注时，成人保持安静观察？</div>
+            <div class="check-item">活动后，孩子有机会把物品放回原位？</div>
+            <div class="check-item">孩子真的在"工作"而非被"考问"？</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 思想 -->
+      <div class="sub-content" id="sub-mind">
+        <div class="section">
+          <div class="section-title">一、关于"帮助"</div>
+          <div class="mind-card">
+            <div class="mind-quote">"永远不要帮助一个孩子去做他自己说'我自己来'就能做的事。"</div>
+            <div class="mind-desc">——这是蒙台梭利最核心的一句话。请记住它。</div>
+          </div>
+          <div class="mind-card">
+            <div class="mind-title">怎么判断该不该帮？</div>
+            <div class="mind-item">问自己：是在发展他的能力，还是在代替他完成任务？</div>
+            <div class="mind-item">孩子努力尝试但做不到——可以帮</div>
+            <div class="mind-item">孩子能自己做到——请等</div>
+            <div class="mind-item">纯粹为了节省时间——绝对不该帮</div>
+          </div>
+          <div class="mind-card warning">
+            <div class="mind-title">警惕</div>
+            <div class="mind-item">"帮忙30秒"vs"等待10分钟"——那10分钟换来几年独立</div>
+            <div class="mind-item">"太慢了，还是我来吧"——这是孩子的节奏，不是你的</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">二、关于"观察"</div>
+          <div class="mind-card">
+            <div class="mind-quote">观察是教育的第一步。不观察就干预，就像不看路就开车。</div>
+            <div class="mind-desc">先观察，你会惊讶于孩子自己的能力。</div>
+          </div>
+          <div class="mind-card">
+            <div class="mind-title">不要做</div>
+            <div class="mind-item">不要在孩子专注时说话（哪怕是"你真棒"）</div>
+            <div class="mind-item">不要打断孩子的重复（重复是学习，不是无聊）</div>
+            <div class="mind-item">不要替孩子做他正在努力做的事</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">三、关于"等待"</div>
+          <div class="mind-card">
+            <div class="mind-quote">等待是给孩子最好的礼物。这表示你尊重他需要的时间。</div>
+            <div class="mind-desc">我们太急了。慢一点，孩子需要时间。</div>
+          </div>
+          <div class="mind-card">
+            <div class="mind-title">日常中的"等待"</div>
+            <div class="mind-item">问完问题后——等5秒</div>
+            <div class="mind-item">孩子做一件事——等他做完</div>
+            <div class="mind-item">计划改变——提前告诉孩子</div>
+          </div>
+        </div>
+
+        <div class="final-quote">
+          <div class="final-text">你不需要做"完美"的父母。只做一件事——在孩子需要时提供帮助；在孩子不需要时，安静等待。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-item active" onclick="switchTab('home')">
+      <span class="tab-icon">🏠</span>
+      <span class="tab-text">首页</span>
+    </button>
+    <button class="tab-item" onclick="switchTab('age')">
+      <span class="tab-icon">📅</span>
+      <span class="tab-text">月龄</span>
+    </button>
+    <button class="tab-item" onclick="switchTab('domain')">
+      <span class="tab-icon">🎯</span>
+      <span class="tab-text">领域</span>
+    </button>
+    <button class="tab-item" onclick="switchTab('practice')">
+      <span class="tab-icon">💡</span>
+      <span class="tab-text">实践</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Tab navigation - using onclick for better iOS compatibility
+  function switchTab(pageId) {
+    const tabItems = document.querySelectorAll('.tab-item');
+    const tabPages = document.querySelectorAll('.tab-page');
+
+    tabItems.forEach(t => t.classList.remove('active'));
+    document.querySelector('.tab-item[data-page="' + pageId + '"]').classList.add('active');
+
+    tabPages.forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageId).classList.add('active');
+
+    document.querySelector('.page-content').scrollTop = 0;
+  }
+
+  // Sub tab navigation (for practice page)
+  function switchSubTab(subId) {
+    const subTabs = document.querySelectorAll('.sub-tab');
+    const subContents = document.querySelectorAll('.sub-content');
+
+    subTabs.forEach(t => t.classList.remove('active'));
+    document.querySelector('.sub-tab[data-sub="' + subId + '"]').classList.add('active');
+
+    subContents.forEach(c => c.classList.remove('active'));
+    document.getElementById('sub-' + subId).classList.add('active');
+  }
+</script>
+</body>
+</html>
