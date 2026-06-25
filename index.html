@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>蒙特梭利早教指南</title>
+<title>2周岁养育完全指南</title>
 <style>
   :root {
     --bg: #faf8f3;
@@ -41,7 +41,6 @@
     font-size: 15px;
   }
 
-  /* App Container - Mobile First */
   .app {
     display: flex;
     flex-direction: column;
@@ -49,7 +48,6 @@
     max-width: 100%;
   }
 
-  /* Header */
   .header {
     background: var(--accent);
     color: white;
@@ -57,96 +55,180 @@
     text-align: center;
     flex-shrink: 0;
   }
-  .header h1 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-  .header p {
-    font-size: 12px;
-    opacity: 0.85;
-  }
+  .header h1 { font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+  .header .sub { font-size: 12px; opacity: 0.85; }
+  .header .tagline { font-size: 11px; opacity: 0.7; margin-top: 4px; }
 
-  /* Page Content */
   .page-content {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 16px 16px 80px;
+    padding: 16px 16px 90px;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Tab Content */
-  .tab-page {
-    display: none;
-    animation: fadeIn 0.2s ease;
-  }
-  .tab-page.active {
-    display: block;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
+  .tab-page { display: none; animation: fadeIn 0.2s ease; }
+  .tab-page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* Page Title */
   .page-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--line);
+    font-size: 20px; font-weight: 600; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--line);
   }
   .page-title .en {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--ink-soft);
-    margin-top: 2px;
+    display: block; font-size: 12px; font-weight: 400;
+    font-style: italic; color: var(--ink-soft); margin-top: 2px;
   }
 
-  /* Section */
-  .section {
-    margin-bottom: 24px;
-  }
+  .section { margin-bottom: 24px; }
   .section-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 12px;
-    padding-left: 12px;
-    border-left: 3px solid var(--accent);
+    font-size: 16px; font-weight: 600; margin-bottom: 12px;
+    padding-left: 12px; border-left: 3px solid var(--accent);
   }
 
-  /* Cards */
   .card {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 12px;
+    background: white; border: 1px solid var(--line);
+    border-radius: 10px; padding: 16px; margin-bottom: 12px;
   }
-  .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 8px;
+  .card-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+  .quote-box {
+    background: var(--bg-soft); border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 12px 0;
   }
-  .card-desc {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.6;
+  .quote-text { font-size: 13px; font-style: italic; color: var(--ink-soft); line-height: 1.6; }
+  .quote-author { font-size: 11px; color: var(--ink-faint); margin-top: 8px; }
+
+  /* ========== TAB BAR ========== */
+  .tab-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: white; border-top: 1px solid var(--line);
+    display: flex; z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .tab-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 10px 4px; min-height: 56px;
+    color: var(--ink-faint); background: none; border: none;
+  }
+  .tab-item.active { color: var(--accent); }
+  .tab-icon { font-size: 20px; margin-bottom: 1px; }
+  .tab-text { font-size: 10px; font-weight: 500; }
+
+  /* ========== SUB TAB ========== */
+  .sub-tab-bar {
+    display: flex; background: var(--bg-soft);
+    border-radius: 10px; padding: 4px; margin-bottom: 16px; gap: 4px;
+    flex-wrap: wrap;
+  }
+  .sub-tab {
+    flex: 1; padding: 10px 4px; text-align: center;
+    font-size: 12px; color: var(--ink-soft);
+    background: transparent; border: none; border-radius: 8px;
+    min-width: 60px;
+  }
+  .sub-tab.active {
+    background: white; color: var(--accent); font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .sub-content { display: none; }
+  .sub-content.active { display: block; animation: fadeIn 0.2s ease; }
+
+  /* ========== ACTIVITY CARD (DETAILED) ========== */
+  .activity-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px; margin-bottom: 16px;
+  }
+  .activity-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .activity-icon { font-size: 22px; }
+  .activity-name { font-size: 15px; font-weight: 600; flex: 1; }
+  .activity-age {
+    font-size: 11px; padding: 2px 10px;
+    background: var(--accent-light); color: var(--accent);
+    border-radius: 10px; white-space: nowrap;
+  }
+  .activity-meta {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+  }
+  .activity-meta .meta-tag {
+    font-size: 11px; padding: 2px 8px;
+    background: var(--bg-soft); color: var(--ink-soft);
+    border-radius: 8px;
   }
 
-  /* Period Badge */
+  /* Activity detail sections */
+  .act-section { margin-bottom: 10px; }
+  .act-section:last-child { margin-bottom: 0; }
+  .act-label {
+    font-size: 12px; font-weight: 600; color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .act-text {
+    font-size: 13px; color: var(--ink-soft); line-height: 1.6;
+  }
+  .act-list { padding-left: 16px; }
+  .act-list li {
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.6; margin-bottom: 3px;
+  }
+
+  /* Tip box inside activity */
+  .tip-box {
+    background: var(--accent-light); border-radius: 8px;
+    padding: 10px 12px; margin-top: 8px;
+  }
+  .tip-box .tip-title {
+    font-size: 11px; font-weight: 600; color: var(--accent); margin-bottom: 3px;
+  }
+  .tip-box .tip-text {
+    font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  }
+
+  .warn-box {
+    background: #fef9f0; border: 1px solid #e8dcc8;
+    border-radius: 8px; padding: 10px 12px; margin-top: 8px;
+  }
+  .warn-box .warn-title {
+    font-size: 11px; font-weight: 600; color: #8c2d44; margin-bottom: 3px;
+  }
+  .warn-box .warn-text {
+    font-size: 12px; color: var(--ink-soft); line-height: 1.5;
+  }
+
+  /* ========== PRINCIPLE CARDS ========== */
+  .principle-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 12px;
+  }
+  .principle-title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+
+  /* ========== CHECKLIST ========== */
+  .check-item {
+    font-size: 13px; color: var(--ink-soft);
+    padding: 10px 0; border-bottom: 1px solid var(--line-soft);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .check-item::before {
+    content: "□"; color: var(--accent); font-weight: bold; flex-shrink: 0;
+  }
+  .check-item:last-child { border-bottom: none; }
+
+  /* ========== TIMELINE ========== */
+  .timeline-item {
+    background: white; border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 12px;
+  }
+  .timeline-age { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 6px; }
+  .timeline-content { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ========== SENSITIVE BADGE ========== */
   .period-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600;
   }
   .period-badge.language { background: var(--lang-bg); color: var(--lang-ink); }
   .period-badge.movement { background: var(--accent-light); color: var(--accent); }
@@ -154,1172 +236,1781 @@
   .period-badge.sensory { background: var(--pl-bg); color: var(--pl-ink); }
   .period-badge.independent { background: var(--math-bg); color: var(--math-ink); }
 
-  /* Timeline */
-  .timeline-item {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
+  /* ========== PHILOSOPHY COMPARE ========== */
+  .phil-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px; margin-bottom: 16px;
+    border-top: 3px solid var(--accent);
   }
-  .timeline-age {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .timeline-content {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
+  .phil-card.reggio { border-top-color: #c54848; }
+  .phil-card.waldorf { border-top-color: #d9c469; }
+  .phil-card.pikler { border-top-color: #8fb9d4; }
+  .phil-card.froebel { border-top-color: #e8a4b5; }
+  .phil-card.highscope { border-top-color: #6b9e6b; }
+  .phil-card.forest { border-top-color: #4a7c59; }
+  .phil-card.chinese { border-top-color: #b8860b; }
+  .phil-card.modern { border-top-color: #6b5b95; }
+  .phil-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .phil-name { font-size: 16px; font-weight: 600; }
+  .phil-origin { font-size: 11px; color: var(--ink-faint); }
+  .phil-quote { font-size: 12px; font-style: italic; color: var(--ink-soft); background: var(--bg-soft); padding: 8px 10px; border-radius: 6px; margin-bottom: 8px; line-height: 1.5; }
+  .phil-core { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px; }
+  .phil-principles { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .phil-principles .pp { font-size: 11px; padding: 2px 8px; background: var(--accent-light); color: var(--accent); border-radius: 10px; }
+  .phil-apply { font-size: 12px; color: var(--ink-soft); line-height: 1.5; background: var(--bg-soft); border-radius: 8px; padding: 8px 10px; }
+  .phil-apply strong { color: var(--ink); }
 
-  /* Activity Card */
-  .activity-card {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
+  /* Compare table */
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 11px; margin: 8px 0;
   }
-  .activity-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .activity-icon {
-    font-size: 20px;
-  }
-  .activity-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    flex: 1;
-  }
-  .activity-age {
-    font-size: 11px;
-    padding: 2px 8px;
-    background: var(--accent-light);
-    color: var(--accent);
-    border-radius: 10px;
-  }
-  .activity-desc {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-  .activity-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .activity-tag {
-    font-size: 11px;
-    padding: 3px 8px;
-    background: var(--bg-soft);
-    color: var(--ink-soft);
-    border-radius: 10px;
-  }
-
-  /* List */
-  .list-item {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--line-soft);
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-  .list-item:last-child { border-bottom: none; }
-  .list-item strong {
-    color: var(--ink);
-    font-weight: 600;
-  }
-
-  /* Quote Box */
-  .quote-box {
-    background: var(--bg-soft);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 14px 16px;
-    margin: 12px 0;
-  }
-  .quote-text {
-    font-size: 13px;
-    font-style: italic;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-  .quote-author {
-    font-size: 11px;
-    color: var(--ink-faint);
-    margin-top: 8px;
-  }
-
-  /* Highlight Box */
-  .highlight-box {
-    background: linear-gradient(135deg, #fef9f0 0%, #fdf6e8 100%);
-    border: 1px solid #e8dcc8;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin: 12px 0;
-  }
-  .highlight-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .highlight-text {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  /* EYFS Card */
-  .eyfs-card {
-    background: linear-gradient(135deg, #f3f8fb 0%, #e8f1f7 100%);
-    border: 1px solid #c8dceb;
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-  }
-  .eyfs-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--lang-ink);
-    margin-bottom: 10px;
-  }
-  .eyfs-domain {
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #c8dceb;
-  }
-  .eyfs-domain:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-  .eyfs-domain-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--lang-ink);
-    margin-bottom: 6px;
-  }
-
-  /* Tab Bar - Mobile Fixed Bottom */
-  .tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-top: 1px solid var(--line);
-    display: flex;
-    z-index: 100;
-    padding-bottom: env(safe-area-inset-bottom);
-    -webkit-backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-  .tab-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 8px;
-    min-height: 56px;
-    color: var(--ink-faint);
-    background: transparent;
-    border: none;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  .tab-item.active {
-    color: var(--accent);
-  }
-  .tab-item.active {
-    color: var(--accent);
-  }
-  .tab-icon {
-    font-size: 22px;
-    margin-bottom: 2px;
-  }
-  .tab-text {
+  .compare-table th {
+    background: var(--accent); color: white;
+    padding: 6px 6px; text-align: left; font-weight: 500;
     font-size: 10px;
-    font-weight: 500;
   }
+  .compare-table td {
+    padding: 6px; border-bottom: 1px solid var(--line-soft);
+    color: var(--ink-soft); vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: var(--bg-soft); }
 
-  /* Sub Tab Bar for Book Section */
-  .sub-tab-bar {
-    display: flex;
-    background: var(--bg-soft);
-    border-radius: 10px;
-    padding: 4px;
-    margin-bottom: 16px;
-    gap: 4px;
+  /* ========== TABLE ========== */
+  .compact-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 12px; margin: 8px 0;
   }
-  .sub-tab {
-    flex: 1;
-    padding: 10px 4px;
-    text-align: center;
-    font-size: 12px;
+  .compact-table th {
+    background: var(--accent); color: white;
+    padding: 6px 8px; text-align: left; font-weight: 500;
+  }
+  .compact-table td {
+    padding: 6px 8px; border-bottom: 1px solid var(--line-soft);
     color: var(--ink-soft);
-    background: transparent;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
   }
-  .sub-tab.active {
-    background: white;
-    color: var(--accent);
-    font-weight: 600;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  .sub-content {
-    display: none;
-  }
-  .sub-content.active {
-    display: block;
-    animation: fadeIn 0.2s ease;
-  }
+  .compact-table tr:nth-child(even) td { background: var(--bg-soft); }
 
-  /* Intro Box */
-  .intro-box {
-    background: linear-gradient(135deg, var(--bg-soft) 0%, white 100%);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 14px 16px;
-    margin-bottom: 16px;
-  }
-  .intro-text {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  /* Checklist */
-  .check-item {
-    font-size: 13px;
-    color: var(--ink-soft);
-    padding: 10px 0;
-    border-bottom: 1px solid var(--line-soft);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .check-item::before {
-    content: "□";
-    color: var(--accent);
-    font-weight: bold;
-  }
-  .check-item:last-child { border-bottom: none; }
-
-  /* Principle Card */
-  .principle-card {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-  }
-  .principle-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  /* Action Section */
-  .action-section {
-    margin-bottom: 16px;
-  }
-  .action-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 10px;
-    padding-left: 10px;
-    border-left: 3px solid var(--accent);
-  }
-  .action-list {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .action-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .action-item:last-child { border-bottom: none; }
-  .action-num {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 20px;
-  }
-  .action-content {
-    flex: 1;
-  }
-  .action-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 3px;
-  }
-  .action-desc {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-
-  /* Game Grid */
-  .game-grid {
-    display: grid;
-    gap: 12px;
-  }
-  .game-item {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px;
-  }
-  .game-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .game-age {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    background: var(--accent-light);
-    color: var(--accent);
-    border-radius: 10px;
-    margin-bottom: 6px;
-  }
-  .game-desc {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-    margin-bottom: 6px;
-  }
-  .game-key {
-    font-size: 11px;
-    color: var(--ink-faint);
-    font-style: italic;
-  }
-
-  /* Mind Card */
-  .mind-card {
-    background: white;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-  }
-  .mind-card.warning {
-    background: #fef9f0;
-    border-color: #e8dcc8;
-  }
-  .mind-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .mind-quote {
-    font-size: 13px;
-    font-style: italic;
-    color: var(--accent);
-    background: var(--accent-light);
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    line-height: 1.5;
-  }
-  .mind-desc {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.5;
-  }
-  .mind-item {
-    font-size: 12px;
-    color: var(--ink-soft);
-    padding: 6px 0 6px 14px;
-    position: relative;
-    line-height: 1.4;
-  }
-  .mind-item::before {
-    content: "›";
-    position: absolute;
-    left: 2px;
-    color: var(--accent);
-    font-weight: bold;
-  }
-
-  /* Final Quote */
-  .final-quote {
-    background: linear-gradient(135deg, var(--bg-soft) 0%, #ebe6da 100%);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    margin-top: 16px;
-  }
-  .final-text {
-    font-size: 14px;
-    font-style: italic;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  /* Scrollbar hide */
-  ::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-
-  /* ============================================
-     RESPONSIVE STYLES - Tablet and Desktop
-     ============================================ */
+  /* ========== RESPONSIVE ========== */
   @media (min-width: 768px) {
-    .app {
-      max-width: 800px;
-      margin: 0 auto;
-      box-shadow: 0 0 40px rgba(0,0,0,0.1);
-    }
-
-    .header {
-      padding: 24px 32px;
-    }
-    .header h1 {
-      font-size: 24px;
-    }
-    .header p {
-      font-size: 14px;
-    }
-
-    .page-content {
-      padding: 24px 32px 100px;
-    }
-
-    .page-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: 18px;
-    }
-
-    .section {
-      margin-bottom: 32px;
-    }
-
-    .card {
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-    .card-title {
-      font-size: 16px;
-    }
-    .card-desc {
-      font-size: 14px;
-    }
-
-    .activity-card {
-      padding: 18px 20px;
-      margin-bottom: 16px;
-    }
-    .activity-name {
-      font-size: 16px;
-    }
-    .activity-desc {
-      font-size: 14px;
-    }
-
-    .timeline-item {
-      padding: 18px 20px;
-      margin-bottom: 16px;
-    }
-    .timeline-age {
-      font-size: 15px;
-    }
-    .timeline-content {
-      font-size: 14px;
-    }
-
-    .quote-box {
-      padding: 18px 20px;
-      margin: 16px 0;
-    }
-    .quote-text {
-      font-size: 14px;
-    }
-
-    .intro-box {
-      padding: 18px 20px;
-      margin-bottom: 20px;
-    }
-    .intro-text {
-      font-size: 14px;
-    }
-
-    .sub-tab-bar {
-      padding: 6px;
-      margin-bottom: 20px;
-    }
-    .sub-tab {
-      padding: 10px;
-      font-size: 13px;
-    }
-
-    .action-title {
-      font-size: 16px;
-      padding-left: 12px;
-    }
-    .action-item {
-      padding: 14px 16px;
-    }
-    .action-label {
-      font-size: 14px;
-    }
-    .action-desc {
-      font-size: 13px;
-    }
-
-    .game-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .game-item {
-      padding: 16px;
-    }
-    .game-name {
-      font-size: 15px;
-    }
-    .game-desc {
-      font-size: 13px;
-    }
-
-    .mind-card {
-      padding: 18px 20px;
-      margin-bottom: 16px;
-    }
-    .mind-title {
-      font-size: 14px;
-    }
-    .mind-quote {
-      font-size: 14px;
-      padding: 12px 16px;
-    }
-    .mind-desc {
-      font-size: 13px;
-    }
-    .mind-item {
-      font-size: 13px;
-      padding: 8px 0 8px 18px;
-    }
-
-    .final-quote {
-      padding: 24px;
-    }
-    .final-text {
-      font-size: 15px;
-    }
-
-    .tab-icon {
-      font-size: 26px;
-    }
-    .tab-text {
-      font-size: 12px;
-    }
-    .tab-item {
-      padding: 12px;
-    }
+    .app { max-width: 800px; margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.1); }
+    .header { padding: 24px 32px; }
+    .header h1 { font-size: 24px; }
+    .page-content { padding: 24px 32px 100px; }
+    .page-title { font-size: 24px; }
+    .section-title { font-size: 18px; }
+    .card { padding: 20px; }
+    .card-title { font-size: 16px; }
+    .card-desc { font-size: 14px; }
+    .activity-card { padding: 20px; }
+    .activity-name { font-size: 16px; }
+    .act-text { font-size: 14px; }
+    .act-list li { font-size: 14px; }
+    .compact-table { font-size: 13px; }
   }
 
-  /* Desktop - larger screens */
   @media (min-width: 1024px) {
-    .app {
-      max-width: 900px;
-      margin: 24px auto;
-      border-radius: 16px;
-      overflow: hidden;
-      height: auto;
-      min-height: calc(100vh - 48px);
-    }
-
-    .header {
-      padding: 28px 40px;
-    }
-    .header h1 {
-      font-size: 28px;
-    }
-    .header p {
-      font-size: 15px;
-    }
-
-    .page-content {
-      padding: 32px 40px 120px;
-    }
-
-    .page-title {
-      font-size: 26px;
-    }
-
-    .section-title {
-      font-size: 20px;
-    }
-
-    .section {
-      margin-bottom: 36px;
-    }
-
-    .card {
-      padding: 24px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    .activity-card {
-      padding: 20px 24px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    .timeline-item {
-      padding: 20px 24px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    .game-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .game-item {
-      padding: 18px;
-      border-radius: 12px;
-    }
-
-    .mind-card {
-      padding: 20px 24px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-
-    .final-quote {
-      padding: 28px 32px;
-      border-radius: 12px;
-    }
-
-    .tab-bar {
-      border-radius: 0 0 16px 16px;
-    }
-
-    /* Show top navigation on very large screens */
-    @media (min-width: 1200px) {
-      .app {
-        max-width: 1000px;
-      }
-
-      .page-content {
-        padding: 40px 48px 140px;
-      }
-    }
+    .app { max-width: 900px; margin: 24px auto; border-radius: 16px; overflow: hidden; min-height: calc(100vh - 48px); }
+    .header { padding: 28px 40px; }
+    .page-content { padding: 32px 40px 120px; }
   }
 </style>
 </head>
 <body>
 <div class="app">
-  <!-- Header -->
   <div class="header">
-    <h1>蒙特梭利早教指南</h1>
-    <p>18-36个月 家庭教育</p>
+    <h1>2周岁养育完全指南</h1>
+    <div class="sub">24-36个月 家庭教育</div>
+    <div class="tagline">蒙台梭利 · 瑞吉欧 · 华德福 · 皮克勒 · 中国活教育</div>
   </div>
 
-  <!-- Page Content -->
   <div class="page-content">
 
-    <!-- 首页 -->
+    <!-- ==================== 首页（合并指南） ==================== -->
     <div class="tab-page active" id="page-home">
-      <div class="intro-box">
-        <div class="intro-text">
-          <strong>写在前面：</strong>18-36个月是孩子发展最密集的时期。你的任务不是"教"孩子，而是<strong>准备环境</strong>——让孩子的内在潜能得以实现。
+
+      <div class="section">
+        <div class="section-title">每天做到这四件事</div>
+        <div class="card">
+          <div class="card-title">1. 观察，不急着教</div>
+          <div class="card-desc">每天留10分钟，安静坐在旁边看孩子玩。不打断、不指导、不夸奖。你会发现孩子的兴趣和能力远超你想象。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">2. 示范，不说教</div>
+          <div class="card-desc">做给孩子看，不要说给孩子听。示范倒水、穿鞋、擦桌子——然后退后，让孩子自己试。示范时保持安静。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">3. 等待，不代替</div>
+          <div class="card-desc">帮忙30秒，不如等孩子做10分钟。孩子穿鞋慢？提前10分钟开始穿。问完问题等3-5秒，给他组织语言的时间。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">4. 环境准备，不催促</div>
+          <div class="card-desc">给他低矮的架子、真实的小杯子、适合尺寸的家具。安全的环境比"不许碰"有用一百倍。</div>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">核心养育原则</div>
-        <div class="card">
-          <div class="card-title">做不说教</div>
-          <div class="card-desc">示范一次，然后让孩子自己来。帮忙30秒，不如等孩子做10分钟。</div>
-        </div>
-        <div class="card">
-          <div class="card-title">真实大于玩具</div>
-          <div class="card-desc">木勺、陶碗比塑料玩具更有价值，因为它们有重量、有质感。</div>
-        </div>
-        <div class="card">
-          <div class="card-title">慢就是快</div>
-          <div class="card-desc">这个阶段孩子的工作就是"慢慢做事"。赶时间时抱起孩子就走，不如提前10分钟开始。</div>
-        </div>
-        <div class="card">
-          <div class="card-title">语言要精确</div>
-          <div class="card-desc">不说"花花"，说"玫瑰花"或"郁金香"。词汇越精确，语言发展越丰富。</div>
-        </div>
-        <div class="card">
-          <div class="card-title">秩序是安全感</div>
-          <div class="card-desc">固定的生活节奏是孩子最重要的心理营养。</div>
-        </div>
+        <div class="section-title">最容易踩的5个坑</div>
+        <table class="compact-table">
+          <tr><th>别这么做</th><th>应该这么做</th><th>为什么</th></tr>
+          <tr><td>替孩子做他会做的事</td><td>忍住，在旁边等，他自己能行</td><td>破坏独立性和自信心</td></tr>
+          <tr><td>用零食/贴纸奖励他</td><td>让他体验完成本身的成就感</td><td>阻碍内在动力，变成"有奖励才做"</td></tr>
+          <tr><td>孩子专注时夸他"真棒"</td><td>安静看着他，等他做完再回应</td><td>打断专注，变成"为表扬而做"</td></tr>
+          <tr><td>不停地问"这是什么颜色"</td><td>你直接说"这是红色"，他自然学会</td><td>给孩子压力，他需要自然吸收</td></tr>
+          <tr><td>怕脏怕乱不让碰</td><td>准备好换洗衣服，脏了洗就是</td><td>减少感官体验，阻碍大脑发展</td></tr>
+        </table>
       </div>
 
-      <div class="quote-box">
-        <div class="quote-text">"永远不要帮助一个孩子去做他自己说'我自己来'就能做的事。"</div>
-        <div class="quote-author">—— 玛丽亚·蒙台梭利</div>
+      <div class="section">
+        <div class="section-title">2岁孩子正在经历什么</div>
+        <table class="compact-table">
+          <tr><th>月龄</th><th>语言</th><th>动作</th><th>心理特点</th></tr>
+          <tr><td><strong>24个月</strong></td><td>100-200词，短句</td><td>能跑，用勺吃饭</td><td>"我自己来"、秩序感高峰</td></tr>
+          <tr><td><strong>30个月</strong></td><td>200-300词，完整句子</td><td>双脚跳，安全剪刀</td><td>秩序感仍强但可变通</td></tr>
+          <tr><td><strong>36个月</strong></td><td>300词+，描述性语言</td><td>单脚站，会穿脱衣</td><td>社交萌芽，自理基本建立</td></tr>
+        </table>
       </div>
+
     </div>
 
-    <!-- 月龄 -->
-    <div class="tab-page" id="page-age">
-      <div class="page-title">各月龄发展轨迹</div>
+    <!-- ==================== 活动 ==================== -->
+    <div class="tab-page" id="page-activities">
+      <div class="page-title">家庭活动库 <span class="en">Detailed Activity Guide</span></div>
 
-      <div class="section">
-        <div class="section-title">敏感期一览</div>
-        <div class="card">
-          <span class="period-badge language">语言</span>
-          <div class="card-title" style="margin-top:8px;">语言敏感期</div>
-          <div class="card-desc">0-6岁（爆发期2-4岁）每天可学10-15个新词</div>
-        </div>
-        <div class="card">
-          <span class="period-badge movement">动作</span>
-          <div class="card-title" style="margin-top:8px;">动作精细化敏感期</div>
-          <div class="card-desc">1.5-4岁（关键期1.5-3岁）走、跑、跳、手部精细动作</div>
-        </div>
-        <div class="card">
-          <span class="period-badge order">秩序</span>
-          <div class="card-title" style="margin-top:8px;">秩序感敏感期</div>
-          <div class="card-desc">0-6岁（高峰2-4岁）对顺序、位置有强烈需求</div>
-        </div>
-        <div class="card">
-          <span class="period-badge sensory">感官</span>
-          <div class="card-title" style="margin-top:8px;">感官精致化敏感期</div>
-          <div class="card-desc">2.5-6岁手和眼是"心智的肉体阶段"</div>
-        </div>
-        <div class="card">
-          <span class="period-badge independent">独立</span>
-          <div class="card-title" style="margin-top:8px;">独立性敏感期</div>
-          <div class="card-desc">2-4岁"我自己来"——渴望独立完成力所能及的事</div>
-        </div>
+      <div class="sub-tab-bar">
+        <button class="sub-tab active" onclick="switchSubTab('daily')">日常生活</button>
+        <button class="sub-tab" onclick="switchSubTab('sensory')">感官探索</button>
+        <button class="sub-tab" onclick="switchSubTab('language')">语言发展</button>
+        <button class="sub-tab" onclick="switchSubTab('math')">数学启蒙</button>
+        <button class="sub-tab" onclick="switchSubTab('motor')">运动发展</button>
+        <button class="sub-tab" onclick="switchSubTab('eclectic')">多元理念</button>
       </div>
 
-      <div class="section">
-        <div class="section-title">各阶段发展</div>
+      <!-- ===== 日常生活 ===== -->
+      <div class="sub-content active" id="sub-daily">
 
-        <div class="timeline-item">
-          <div class="timeline-age">18-24个月</div>
-          <div class="timeline-content">
-            <strong>语言：</strong>10-50词，简单指令<br>
-            <strong>动作：</strong>走稳，蹲下站起<br>
-            <strong>秩序：</strong>对位置开始有需求<br>
-            <strong>独立：</strong>用手指指想要的东西
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-age">24-30个月</div>
-          <div class="timeline-content">
-            <strong>语言：</strong>100-300词，短句<br>
-            <strong>动作：</strong>跑稳，用勺子吃（可能洒）<br>
-            <strong>秩序：</strong>高峰期——"必须按顺序"<br>
-            <strong>独立：</strong>"我自己来"最常说
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-age">30-36个月</div>
-          <div class="timeline-content">
-            <strong>语言：</strong>300词以上，完整句子<br>
-            <strong>动作：</strong>双脚跳，安全剪刀<br>
-            <strong>秩序：</strong>仍强烈但能接受变通<br>
-            <strong>社交：</strong>简单合作游戏萌芽
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 领域 -->
-    <div class="tab-page" id="page-domain">
-      <div class="page-title">四大发展领域</div>
-
-      <!-- 日常生活 -->
-      <div class="section">
-        <div class="section-title">🏠 日常生活</div>
-        <div class="activity-card">
-          <div class="activity-header">
-            <span class="activity-icon">🚶</span>
-            <span class="activity-name">走线</span>
-            <span class="activity-age">18个月+</span>
-          </div>
-          <div class="activity-desc">胶带贴直线，赤脚沿线走。发展平衡感和专注力。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">平衡</span>
-            <span class="activity-tag">专注</span>
-            <span class="activity-tag">5-10分钟</span>
-          </div>
-        </div>
+        <!-- 活动1: 倒水 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">💧</span>
-            <span class="activity-name">倒水</span>
-            <span class="activity-age">18个月+</span>
+            <span class="activity-name">倒水工作</span>
+            <span class="activity-age">18m+</span>
           </div>
-          <div class="activity-desc">两个小杯子来回倒。底下铺毛巾防洒。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">手眼协调</span>
-            <span class="activity-tag">专注</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 手眼协调 · 专注 · 精确控制</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">两个小杯子（陶瓷或玻璃，非塑料）、水、小托盘、底下铺的毛巾</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li><strong>第一步·示范</strong>：你坐在孩子对面，缓慢地将水从A杯倒入B杯，倒满为止。全程不说话或只说关键词"倒"。</li>
+              <li><strong>第二步·邀请</strong>：将杯子放回原位，用眼神和手势示意"轮到你了"。</li>
+              <li><strong>第三步·孩子操作</strong>：孩子开始倒。即使洒出来，也保持安静——底下有毛巾。</li>
+              <li><strong>第四步·收尾</strong>：如果孩子做完后离开，示范如何用毛巾擦干桌面，把杯子放回架子。</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">观察要点</div>
+            <div class="act-text">孩子是否专注于水流？是否反复做同一个动作？洒水后是什么反应？这些比"倒得好不好"更重要。</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">进阶变化</div>
+            <div class="act-text">
+              ✅ <strong>18-24个月</strong>：两个小杯子来回倒<br>
+              ✅ <strong>24-30个月</strong>：用带嘴的小水壶倒到杯子里<br>
+              ✅ <strong>30-36个月</strong>：用漏斗倒、倒不同类型的豆子/米
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <div class="warn-title">⚠ 常见错误</div>
+            <div class="warn-text">不要嫌洒出来就插手帮孩子扶杯子。洒出来是学习过程的一部分。只要底下铺了毛巾，处理起来很容易。</div>
           </div>
         </div>
+
+        <!-- 活动2: 洗手工作 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">🧼</span>
-            <span class="activity-name">洗手</span>
-            <span class="activity-age">18个月+</span>
+            <span class="activity-name">洗手工作</span>
+            <span class="activity-age">18m+</span>
           </div>
-          <div class="activity-desc">固定步骤：湿手→关水→搓手→开水→冲水→关水→擦干</div>
-          <div class="activity-tags">
-            <span class="activity-tag">秩序感</span>
-            <span class="activity-tag">自理</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 5分钟</span>
+            <span class="meta-tag">🎯 秩序感 · 自理 · 程序记忆</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">小凳子（让孩子够到洗手台）、肥皂、毛巾、小水盆（可选）</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">固定步骤（孩子逐步独立完成）</div>
+            <ul class="act-list">
+              <li>① 踩上小凳子，站好</li>
+              <li>② 打开水龙头（可提前调好水温）</li>
+              <li>③ 把手淋湿</li>
+              <li>④ 关水龙头</li>
+              <li>⑤ 按一下洗手液或拿起肥皂</li>
+              <li>⑥ 搓手——可以唱一遍生日歌（正好15-20秒）</li>
+              <li>⑦ 打开水龙头</li>
+              <li>⑧ 冲干净</li>
+              <li>⑨ 关水龙头</li>
+              <li>⑩ 拿毛巾擦干</li>
+              <li>⑪ 毛巾挂回原位</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">为什么这是一个好活动？</div>
+            <div class="act-text">11个固定步骤，每一步按顺序——这正是秩序敏感期孩子最需要的。完成一套程序带来的满足感远大于"手洗干净了"这个结果。</div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 实用提示</div>
+            <div class="tip-text">一开始孩子可能只愿意做其中一两步（比如搓手），其他步骤你来完成。没关系，慢慢放手，逐步让他独立完成全部步骤。</div>
           </div>
         </div>
+
+        <!-- 活动3: 剥食物 -->
         <div class="activity-card">
           <div class="activity-header">
-            <span class="activity-icon">👕</span>
-            <span class="activity-name">衣饰框</span>
-            <span class="activity-age">24个月+</span>
+            <span class="activity-icon">🥚</span>
+            <span class="activity-name">剥食物工作</span>
+            <span class="activity-age">18m+</span>
           </div>
-          <div class="activity-desc">按扣→纽扣→拉链→粘扣→系带</div>
-          <div class="activity-tags">
-            <span class="activity-tag">精细动作</span>
-            <span class="activity-tag">独立性</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 手指力量 · 独立性 · 成就感</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">材料与难度分级</div>
+            <div class="act-text">
+              <strong>🟢 简单（18个月+）</strong>：剥桔子瓣、剥香蕉皮、剥大蒜瓣<br>
+              <strong>🟡 中等（24个月+）</strong>：剥水煮鸡蛋壳、剥豌豆荚、剥花生<br>
+              <strong>🔴 挑战（30个月+）</strong>：剥虾壳、剥毛豆、撕生菜叶
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <ul class="act-list">
+              <li>给孩子一个准备好的食物，放在小碗里</li>
+              <li>你在旁边也做同样的事（剥自己的那份）</li>
+              <li>剥完后，孩子剥的那份全家人一起吃——这是真实的贡献</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">关键原则</div>
+            <div class="act-text">不是为了"剥干净"，而是为了"自己完成"。孩子剥得坑坑洼洼的鸡蛋，全家人开开心心吃掉——这传递的是：你的劳动有价值。</div>
+          </div>
+
+          <div class="warn-box">
+            <div class="warn-title">⚠ 不要</div>
+            <div class="warn-text">不要嫌孩子剥得慢就抢过来帮忙剥好。不要在孩子剥完后说"你看，剥得乱七八糟的"。吃掉它，就是最好的肯定。</div>
           </div>
         </div>
+
+        <!-- 活动4: 厨房帮手 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">🍳</span>
-            <span class="activity-name">厨房帮手</span>
-            <span class="activity-age">24个月+</span>
+            <span class="activity-name">厨房小帮手</span>
+            <span class="activity-age">24m+</span>
           </div>
-          <div class="activity-desc">剥鸡蛋、剥豆子、洗菜、搅拌。真的做，不是表演。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">独立性</span>
-            <span class="activity-tag">责任感</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 20-30分钟</span>
+            <span class="meta-tag">🎯 独立性 · 责任感 · 真实技能</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">可以做的事情（按难度递增）</div>
+            <ul class="act-list">
+              <li><strong>洗菜</strong>：给孩子一小盆水和几片叶子，示范怎么洗</li>
+              <li><strong>撕生菜</strong>：用手撕成小块，放进沙拉碗</li>
+              <li><strong>搅拌</strong>：用勺子搅拌面糊、蛋液</li>
+              <li><strong>切软食物</strong>：用安全锯齿刀切香蕉、草莓、煮熟的胡萝卜</li>
+              <li><strong>摆盘</strong>：把樱桃番茄摆在盘子上、摆放餐具</li>
+              <li><strong>擦桌子</strong>：给一个小抹布，示范擦桌子的动作</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">心态准备</div>
+            <div class="act-text">接受慢（可能花3分钟洗一片叶子）、接受乱（水洒出来、面粉弄到衣服上）、接受不完美（香蕉切得一块大一块小）。这些都是过程的一部分。</div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 省时技巧</div>
+            <div class="tip-text">如果赶时间，不要在忙碌的做饭高峰让孩子帮忙。选一个你不赶时间的时候，把这个当作"活动"而不是"家务"。</div>
           </div>
         </div>
-      </div>
 
-      <!-- 感官 -->
-      <div class="section">
-        <div class="section-title">👁 感官教育</div>
+        <!-- 活动5: 擦桌子 -->
         <div class="activity-card">
           <div class="activity-header">
-            <span class="activity-icon">👐</span>
-            <span class="activity-name">触摸袋</span>
-            <span class="activity-age">18个月+</span>
+            <span class="activity-icon">🧹</span>
+            <span class="activity-name">擦桌子 / 扫地</span>
+            <span class="activity-age">24m+</span>
           </div>
-          <div class="activity-desc">布袋里放不同材质物品，闭眼摸，说出是什么。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">触觉</span>
-            <span class="activity-tag">语言</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 5-10分钟</span>
+            <span class="meta-tag">🎯 责任感 · 大动作 · 秩序</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <ul class="act-list">
+              <li>给孩子一块小抹布（20×20cm左右，半湿）</li>
+              <li>示范如何从一边擦到另一边（单向、不来回擦）</li>
+              <li>让孩子擦自己的小桌子</li>
+              <li>完成后，示范把抹布洗干净、晾好</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">为什么好</div>
+            <div class="act-text">擦桌子有"开始"和"结束"——桌子湿了，擦干了，任务完成。这种有始有终的闭环工作给2岁孩子极大的满足感。</div>
           </div>
         </div>
+
+        <!-- 活动6: 穿脱衣物 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👕</span>
+            <span class="activity-name">自己穿脱衣物</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🎯 精细动作 · 独立性 · 自理</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">分步技能树</div>
+            <div class="act-text">
+              <strong>24个月可练习</strong>：脱袜子（最容易的第一步）、脱鞋子（魔术贴）、脱帽子<br>
+              <strong>30个月可练习</strong>：脱外套（拉开拉链后自己脱）、穿鞋子（非左右）、穿短裤<br>
+              <strong>36个月可练习</strong>：穿T恤（大头套）、扣大纽扣、拉拉链
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">实用技巧</div>
+            <div class="act-text">
+              ✅ 穿的衣服要宽松易穿脱（松紧带裤子 > 纽扣裤子）<br>
+              ✅ 鞋子选魔术贴款 > 系带款<br>
+              ✅ 每次穿脱时预留足够时间（提前10分钟开始准备出门）
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <div class="warn-title">⚠ 耐心提醒</div>
+            <div class="warn-text">穿反了鞋子、穿反了衣服——只要孩子是自己穿的，就是胜利。你可以问"你的脚舒服吗？"引导他自己发现，而不是直接纠正。</div>
+          </div>
+        </div>
+
+        <!-- 活动7: 衣饰框 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🔘</span>
+            <span class="activity-name">衣饰框（蒙氏经典）</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 15-20分钟</span>
+            <span class="meta-tag">🎯 精细动作 · 独立穿脱</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">家庭自制方法</div>
+            <div class="act-text">用硬纸板或绣花框，中间夹一块布，布上缝制不同的扣件：按扣、大纽扣、拉链、魔术贴。每个框只教一种技能。</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">进阶顺序</div>
+            <div class="act-text">
+              <strong>第一步</strong>：魔术贴（最简单，24m+）<br>
+              <strong>第二步</strong>：大按扣（24m+）<br>
+              <strong>第三步</strong>：大纽扣（30m+）<br>
+              <strong>第四步</strong>：拉链（30m+）
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">示范方法</div>
+            <div class="act-text">坐在孩子右侧（如果你右手用剪刀，孩子在你左侧能看到你的手部动作），缓慢地演示一次扣/解的动作。然后让孩子试。不说话，不催促。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== 感官探索 ===== -->
+      <div class="sub-content" id="sub-sensory">
+
+        <!-- 感官1: 颜色分类 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">🎨</span>
             <span class="activity-name">颜色分类</span>
-            <span class="activity-age">18个月+</span>
+            <span class="activity-age">18m+</span>
           </div>
-          <div class="activity-desc">红黄蓝三种颜色，按颜色分到碗里。逐渐增加颜色。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">颜色识别</span>
-            <span class="activity-tag">分类</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 颜色识别 · 分类能力</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">3个小碗或盘子、红/黄/蓝三色积木或纽扣各5-8个（先从最容易区分的三原色开始）</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li>把三个碗放在桌上，每个碗旁边放一个对应颜色的积木作为"样本"</li>
+              <li>把所有积木混在一起放在一个篮子里</li>
+              <li>你示范：拿起一个红色积木，放在红色碗里，说"红色"</li>
+              <li>然后把篮子推给孩子，让他自己分</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">进阶变化</div>
+            <div class="act-text">
+              ✅ <strong>18-24个月</strong>：2种颜色（红和蓝），差异大<br>
+              ✅ <strong>24-30个月</strong>：3种颜色（红黄蓝）<br>
+              ✅ <strong>30-36个月</strong>：4-6种颜色（增加绿色、紫色、橙色）；用不同色阶（深红、浅红）
+            </div>
+          </div>
+
+          <div class="warn-box">
+            <div class="warn-title">⚠ 不要考问</div>
+            <div class="warn-text">不要说"这是什么颜色？考考你"。只需要在分类时说"红色"，孩子自然而然就学会了。如果孩子放错了，不需要纠正，他通常会自己发现。</div>
           </div>
         </div>
+
+        <!-- 感官2: 触觉袋 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👐</span>
+            <span class="activity-name">触觉袋</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10分钟</span>
+            <span class="meta-tag">🎯 触觉辨别 · 语言描述 · 专注</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">一个不透明的布袋或枕套，放入3-5种不同材质的物品：光滑的木块、粗糙的砂纸、柔软的棉花、凉凉的金属勺、毛绒的小球</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li>先把物品拿出来，让孩子看一看、摸一摸，你说出名称和质地</li>
+              <li>把物品放进袋子里</li>
+              <li>让孩子闭眼（或你帮他遮眼），伸手进去摸一个</li>
+              <li>"你摸到的是什么？"——让他猜</li>
+              <li>拿出来验证</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">扩展活动</div>
+            <div class="act-text">可以变成"找东西"游戏：你说"帮我找那个柔软的"，孩子在袋子里摸到对应的物品。这是听觉理解+触觉辨别的双重训练。</div>
+          </div>
+        </div>
+
+        <!-- 感官3: 套杯 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">🧱</span>
-            <span class="activity-name">套杯/套盒</span>
-            <span class="activity-age">18个月+</span>
+            <span class="activity-name">套杯 / 套盒</span>
+            <span class="activity-age">18m+</span>
           </div>
-          <div class="activity-desc">大小不同的杯子，从大到小叠起来。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">大小序列</span>
-            <span class="activity-tag">视觉</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 大小序列 · 视觉辨别</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">3-5个大小不同的杯子或盒子（从大到小能套在一起），也可以用不同尺寸的塑料碗</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <div class="act-text">
+              把杯子打散放在地垫上。孩子自然会尝试把它们叠起来或套在一起。<br><br>
+              <strong>千万不要教"应该从大到小套"</strong>——让孩子自己试错。他很快会发现小的放进大的能套住，大的放不进小的。这是自己的发现，不是你教的。
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">观察什么</div>
+            <div class="act-text">孩子用什么策略？是一个个试，还是先目测再选？试错时的表情是困惑还是坚持？套进去后会不会反复拿出来再套？</div>
           </div>
         </div>
+
+        <!-- 感官4: 声音配对 -->
         <div class="activity-card">
           <div class="activity-header">
             <span class="activity-icon">🔊</span>
             <span class="activity-name">声音配对</span>
-            <span class="activity-age">24个月+</span>
+            <span class="activity-age">24m+</span>
           </div>
-          <div class="activity-desc">瓶子装不同东西（米/绿豆/沙子），摇晃配对。</div>
-          <div class="activity-tags">
-            <span class="activity-tag">听觉</span>
-            <span class="activity-tag">专注</span>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10分钟</span>
+            <span class="meta-tag">🎯 听觉辨别 · 专注 · 比较</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">6个相同大小的不透明小瓶子（如药瓶或调料瓶），分别装入不同材料：米、绿豆、沙子、小石子、纽扣、棉花。每两种瓶子装一样的材料，做成3对。</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li>先拿起一对瓶子摇晃，让孩子听一听，说"这两个声音一样"</li>
+              <li>打乱所有瓶子</li>
+              <li>让孩子摇一摇、听一听，找出声音一样的配对</li>
+              <li>从2对（4个瓶子）开始，逐渐增加到3对</li>
+            </ul>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 难度提示</div>
+            <div class="tip-text">如果孩子觉得难，不要强迫。可以只让他摇着玩、听声音。配对的概念会慢慢建立。</div>
           </div>
         </div>
+
+        <!-- 感官5: 嗅觉瓶 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👃</span>
+            <span class="activity-name">嗅觉瓶</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10分钟</span>
+            <span class="meta-tag">🎯 嗅觉辨别 · 语言扩展</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">小罐子/纱布包，分别放入不同气味物品：柠檬皮、咖啡豆、香草、花椒、茶叶、肉桂棒</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <div class="act-text">打开一个罐子，让孩子闻一闻。你说出名称："这是柠檬，酸酸的。"再换一个："这是咖啡，香香的。"之后可以让孩子指认："哪个是柠檬？"</div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- 语言 -->
-      <div class="section">
-        <div class="section-title">💬 语言发展</div>
-        <div class="card">
-          <div class="card-title">命名而非考问</div>
-          <div class="card-desc">指着苹果说"这是苹果"，不问"这是什么？"减少压力。</div>
+      <!-- ===== 语言发展 ===== -->
+      <div class="sub-content" id="sub-language">
+
+        <!-- 语言1: 亲子共读 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">📖</span>
+            <span class="activity-name">亲子共读</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 15-20分钟</span>
+            <span class="meta-tag">🎯 语言理解 · 想象力 · 亲子连接</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <ul class="act-list">
+              <li><strong>固定时间、固定地点</strong>：每天在同一个角落读，建立仪式感</li>
+              <li><strong>让孩子选书</strong>：书架上放3-5本，让孩子选今天读哪本</li>
+              <li><strong>指图命名</strong>：指著图画说出名称，不要问"这是什么"</li>
+              <li><strong>跟随孩子的节奏</strong>：孩子想快速翻页就让他翻，不一定要"读完"</li>
+              <li><strong>重复同一本书</strong>：重复是2岁孩子的学习方式，不要怕讲一百遍</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">绘本选择建议</div>
+            <div class="act-text">
+              <strong>18-24个月</strong>：图画清晰、色彩鲜明、一页一图的硬纸板书<br>
+              <strong>24-30个月</strong>：简单情节、重复句式的生活故事<br>
+              <strong>30-36个月</strong>：有简单情节转折的故事、动物认知、情绪主题
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 共读互动技巧</div>
+            <div class="tip-text">孩子指图时，你命名。孩子说一个词时，你扩展成短句。不必每次读都"教"，有时安静地读、让语言的韵律自然流淌就够。</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">扩展而非纠正</div>
-          <div class="card-desc">孩子说"狗狗跑"，你回应"那只棕色的大狗跑得很快！"</div>
+
+        <!-- 语言2: 主题词汇 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🗣</span>
+            <span class="activity-name">主题词汇扩充</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 5分钟/天</span>
+            <span class="meta-tag">🎯 词汇爆发</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">一周主题参考</div>
+            <div class="act-text">
+              <strong>周一·水果</strong>：苹果、香蕉、葡萄、草莓、西瓜<br>
+              <strong>周二·动物</strong>：狗、猫、兔子、大象、鸭子<br>
+              <strong>周三·颜色</strong>：红色、蓝色、黄色、绿色、白色<br>
+              <strong>周四·身体</strong>：眼睛、鼻子、嘴巴、手、脚<br>
+              <strong>周五·食物</strong>：米饭、面包、牛奶、鸡蛋、面条<br>
+              <strong>周末·户外</strong>：树、花、鸟、太阳、云
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">方法</div>
+            <div class="act-text">在真实的场景中用精确的词汇描述。例如吃水果时说"这是草莓，红色的，甜甜的"。不需要刻意上课，日常融入即可。</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">描述而非命令</div>
-          <div class="card-desc">说"我看到你把书放回去了"，不说"把书放好！"</div>
+
+        <!-- 语言3: 描述性语言 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">💬</span>
+            <span class="activity-name">日常描述与扩展</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">📌 随时进行</span>
+            <span class="meta-tag">🎯 语法结构 · 词汇丰富</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">扩展技巧</div>
+            <div class="act-text">
+              <strong>孩子说 → 你扩展：</strong><br>
+              "狗狗" → "是的，一只棕色的大狗"<br>
+              "车车" → "那辆红色卡车开得好快"<br>
+              "吃" → "你在吃苹果，甜甜的苹果"<br><br>
+              <strong>关键</strong>：先肯定孩子的表达（"是的"），再扩展。不要纠正，不要让他复述。
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">描述性语言（散步时）</div>
+            <div class="act-text">
+              "天空蓝蓝的，有几朵白云飘过。"<br>
+              "这朵花是红色的，闻起来香香的。"<br>
+              "风把树叶吹得摇来摇去。"<br><br>
+              不需要考问"这是什么颜色？"，只需要自然地描述，孩子就吸收进去了。
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">等待回应</div>
-          <div class="card-desc">问完问题后等3-5秒，给孩子组织语言的时间。</div>
+
+        <!-- 语言4: 故事复述 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🔄</span>
+            <span class="activity-name">故事复述</span>
+            <span class="activity-age">30m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 叙事能力 · 语言组织 · 记忆力</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <ul class="act-list">
+              <li>读完一本非常熟悉的绘本后，说"我们来给爸爸讲这个故事吧"</li>
+              <li>你可以指着图给出提示："小熊先做了……"让孩子接</li>
+              <li>不要求完整准确——只要孩子愿意参与就是胜利</li>
+              <li>也可以用玩偶来"演"故事</li>
+            </ul>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 保持轻松</div>
+            <div class="tip-text">如果孩子不愿意复述，不要强迫。有的孩子喜欢听很多遍才开口。尊重他的节奏。</div>
+          </div>
         </div>
+
       </div>
 
-      <!-- 数学 -->
-      <div class="section">
-        <div class="section-title">🔢 数学启蒙</div>
-        <div class="card">
-          <div class="card-title">数数在生活</div>
-          <div class="card-desc">"你有1、2、3个苹果"、"上楼跨1、2、3步"。嵌入日常。</div>
+      <!-- ===== 数学启蒙 ===== -->
+      <div class="sub-content" id="sub-math">
+
+        <!-- 数学1: 数数 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🔢</span>
+            <span class="activity-name">生活中数数</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">📌 随时进行</span>
+            <span class="meta-tag">🎯 唱数 · 数量对应</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">自然融入日常</div>
+            <div class="act-text">
+              "我们来数一数台阶——1、2、3，上来了！"<br>
+              "你有1、2、3块积木"<br>
+              "给妈妈1块饼干"<br>
+              "我们摆了1、2、3、4、5个盘子"<br><br>
+              不需要刻意"上课"，在日常中自然融入数字。2岁孩子不需要理解数字含义，只是把声音和数量对应起来。
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">大小排序</div>
-          <div class="card-desc">大小不同的石头或积木，按从大到小排序。</div>
+
+        <!-- 数学2: 配对 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🧦</span>
+            <span class="activity-name">配对游戏</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 5-10分钟</span>
+            <span class="meta-tag">🎯 配对 · 分类 · 逻辑思维</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">在家可以配对的物品</div>
+            <div class="act-text">
+              ✅ 袜子配对（最经典——洗好衣服一起配对）<br>
+              ✅ 鞋子配对<br>
+              ✅ 筷子配对（前提是保证安全）<br>
+              ✅ 同色积木配对<br>
+              ✅ 同样的贝壳/石头配对
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <div class="act-text">把配对的物品混在一起，给孩子示范找到两只相同的放在一起。然后让孩子自己找。从2-3对开始，逐步增加。</div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 这是数学思维</div>
+            <div class="tip-text">配对是最基本的数学逻辑——"相同"和"不同"的概念。孩子能配对，说明他已经在进行抽象思维了。</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">配对游戏</div>
-          <div class="card-desc">袜子配对、鞋配对、纽扣配对。最简单的逻辑。</div>
+
+        <!-- 数学3: 排序 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">📐</span>
+            <span class="activity-name">大小排序</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10分钟</span>
+            <span class="meta-tag">🎯 比较 · 排序 · 逻辑思维</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">可以排序的物品</div>
+            <div class="act-text">
+              大小不同的积木、盒子、杯子、水果、石头、贝壳<br><br>
+              <strong>方法</strong>：从3个开始（小、中、大），问"哪个最大？""哪个最小？"让孩子指认。然后尝试从小到大或从大到小排列。
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">进阶</div>
+            <div class="act-text">增加到5个物品排序。孩子能熟练排序后，可以引入"第二大""第三大"等概念。</div>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-title">形状探索</div>
-          <div class="card-desc">"窗户是方形"、"杯子是圆形的"。在家里找形状。</div>
+
+        <!-- 数学4: 形状 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">⭕</span>
+            <span class="activity-name">形状探索</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 10分钟</span>
+            <span class="meta-tag">🎯 形状识别 · 空间感知</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <ul class="act-list">
+              <li>认识基本形状：圆形、方形、三角形</li>
+              <li>在家里找形状："窗户是方形""杯口是圆形""屋顶是三角形"</li>
+              <li>用硬纸板剪出形状，让孩子配对或镶嵌</li>
+              <li>形状分类：把积木按形状分到不同的碗里</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== 运动发展 ===== -->
+      <div class="sub-content" id="sub-motor">
+
+        <!-- 运动1: 走线 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🚶</span>
+            <span class="activity-name">走线</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 5-10分钟</span>
+            <span class="meta-tag">🎯 平衡 · 专注 · 身体控制</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">准备</div>
+            <div class="act-text">用彩色胶带在地上贴一条约3-5米的直线，也可以贴成椭圆形</div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <ul class="act-list">
+              <li>脱鞋赤脚沿线走</li>
+              <li>你可以先走一次示范，然后让孩子跟在你后面走</li>
+              <li>初期要求不高——只要沿着线的方向走就行</li>
+              <li>熟练后可以增加难度：端着一杯水走、头顶一个小沙包走</li>
+            </ul>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">为什么好</div>
+            <div class="act-text">走线要求孩子集中注意力控制身体——这是"身体的自律"。蒙台梭利教室中，走线是每天开始"工作"前的准备活动。</div>
+          </div>
+        </div>
+
+        <!-- 运动2: 撕纸/剪纸 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">✂️</span>
+            <span class="activity-name">撕纸 → 剪纸</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🎯 精细动作 · 手指控制</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">撕纸（18个月+）</div>
+            <div class="act-text">
+              给孩子几张废纸（广告纸、杂志纸），示范如何用两只手的大拇指和食指捏住纸，往两边撕。<br><br>
+              撕下来的纸可以收集起来做拼贴画。
+            </div>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">剪纸（24个月+，需安全剪刀）</div>
+            <div class="act-text">
+              <strong>第一步</strong>：练习"开合"动作——空剪<br>
+              <strong>第二步</strong>：剪纸条——你拿着纸条，孩子剪<br>
+              <strong>第三步</strong>：自由剪纸<br><br>
+              安全剪刀只剪纸，不剪头发、衣服。准备一个"剪纸专用"的小盒子。
+            </div>
+          </div>
+        </div>
+
+        <!-- 运动3: 户外运动 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🌳</span>
+            <span class="activity-name">户外运动</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">⏱ 30分钟+/天</span>
+            <span class="meta-tag">🎯 大动作 · 探索 · 自然接触</span>
+          </div>
+
+          <div class="act-section">
+            <div class="act-label">推荐活动</div>
+            <div class="act-text">
+              ✅ <strong>散步</strong>：指着沿途看到的东西命名，不要赶路<br>
+              ✅ <strong>上下坡</strong>：上下缓坡对腿部力量和平衡是极好的训练<br>
+              ✅ <strong>玩沙玩水</strong>：铲沙、倒水、挖洞——感官盛宴<br>
+              ✅ <strong>踢球</strong>：追球、踢球、扔球——简单的球类游戏<br>
+              ✅ <strong>爬小坡/攀爬架</strong>：在安全的前提下让孩子尝试
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-title">💡 户外的心态</div>
+            <div class="tip-text">不要怕脏。泥土、沙子、水、落叶——这些是2岁孩子最好的感官材料。带一套备用衣服，脏了换就是。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===== 多元理念 ===== -->
+      <div class="sub-content" id="sub-eclectic">
+
+        <div class="quote-box">
+          <div class="quote-text">这一栏的活动来自不同教育理念。每个活动都标注了理念来源，方便你对照"理念"页面了解背后的思想。</div>
+        </div>
+
+        <!-- 华德福: 湿水彩 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🎨</span>
+            <span class="activity-name">湿水彩画</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🌿 华德福</span>
+            <span class="meta-tag">⏱ 15-20分钟</span>
+            <span class="meta-tag">🎯 色彩体验 · 感官 · 情绪表达</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">华德福认为颜色不是用来"认识"和"命名"的，而是用来<strong>体验</strong>的。湿水彩让颜色在湿纸上自然流动、交融，孩子感受颜色"活"起来了，而不是用画笔画出"正确"的图形。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">水彩颜料（红黄蓝三色即可）、水彩纸或厚纸、宽口杯装水、小毛笔或海绵、一块湿毛巾铺在桌上</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li><strong>准备</strong>：把水彩纸浸湿后平铺在桌上（或直接用湿海绵刷湿纸面）</li>
+              <li><strong>你示范</strong>：用毛笔蘸一种颜色，轻轻点在湿纸上。观察颜色如何晕开。不说话或少说话。</li>
+              <li><strong>孩子操作</strong>：让孩子自己蘸颜色、点在纸上。他会看到颜色在湿纸上流动、混合。</li>
+              <li><strong>不要求画"什么"</strong>——这不是在画苹果或房子，纯粹体验色彩的流动</li>
+              <li><strong>收尾</strong>：画完放在一边晾干。不要评价"好看""不好看"</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">华德福为什么这样做？</div>
+            <div class="act-text">华德福认为2岁孩子不需要"画东西"——画一个苹果限制了想象力。让孩子体验红色在纸上散开、蓝色和黄色相遇变成绿色——这些"色彩在说话"的体验，比任何成品画都有价值。</div>
+          </div>
+          <div class="warn-box">
+            <div class="warn-title">⚠ 心态准备</div>
+            <div class="warn-text">准备好弄脏。颜料可能会弄到衣服、桌上、地上。穿罩衣、铺旧报纸。这不是在做一幅"作品"，是在体验一个过程。</div>
+          </div>
+        </div>
+
+        <!-- 华德福: 丝绸与天然材料 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🧣</span>
+            <span class="activity-name">丝绸感官盒</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🌿 华德福</span>
+            <span class="meta-tag">⏱ 自由玩耍</span>
+            <span class="meta-tag">🎯 想象力 · 感官 · 创造</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">华德福认为<strong>越简单的玩具越能激发想象力</strong>。一块丝绸可以是披风、裙子、帐篷、小河、摇篮……而一个塑料消防车只有一个玩法。2岁孩子需要的不是"会发声会发光"的玩具，是能激发他创造力的"半成品"。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">一个篮子或盒子，里面放：几块不同颜色的丝绸或棉布（约50×50cm）、几个松果、几块圆滑的木块、一个编织小篮子、两个小木碗</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <ul class="act-list">
+              <li>把篮子放在孩子能够到的地方</li>
+              <li>不示范"应该怎么玩"——让孩子自己去探索</li>
+              <li>你坐在旁边做自己的事（缝纫、看书），不干预</li>
+              <li>孩子可能会把丝绸盖在头上、裹住玩具、把松果放在木碗里……随他去</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">观察什么</div>
+            <div class="act-text">孩子怎么使用这些"未定义"的材料？是否会把丝绸披在身上当披风？是否会把木块排成一排？是否把松果从一个碗倒到另一个碗？这些都是想象力和创造力的表现。</div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-title">💡 定期轮换</div>
+            <div class="tip-text">篮子里的物品每隔几周更换一次，保持新鲜感。天然材料可以去户外捡：秋天的落叶、夏天的贝壳、冬天的枯枝——都是免费的"玩具"。</div>
+          </div>
+        </div>
+
+        <!-- 瑞吉欧: 光影探索 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🔦</span>
+            <span class="activity-name">光影探索</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">✨ 瑞吉欧</span>
+            <span class="meta-tag">⏱ 10-15分钟</span>
+            <span class="meta-tag">🎯 视觉探索 · 因果关系 · 科学萌芽</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">瑞吉欧认为<strong>环境是第三位老师</strong>，而光与影是环境中最重要的元素之一。瑞吉欧教室里有大量的自然光、透明材料、镜子、投影。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">手电筒（或手机闪光灯）、彩色透明塑料片/糖纸、空矿泉水瓶、白色墙壁或白布</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li><strong>光线变化</strong>：在较暗的房间里，打开手电筒照在白色墙上，移动光斑</li>
+              <li><strong>彩色光影</strong>：把彩色透明糖纸放在手电筒前面，墙上出现彩色光斑</li>
+              <li><strong>手影</strong>：用手做简单形状，让孩子看到墙上出现影子</li>
+              <li><strong>透明瓶</strong>：用手电筒照装水的瓶子，看光怎么穿过水</li>
+              <li><strong>让孩子自己玩</strong>：给他手电筒，他自己探索</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">瑞吉欧为什么重视光和影？</div>
+            <div class="act-text">瑞吉欧认为光是最能引发孩子"惊叹感"的元素。当孩子看到自己的手影在墙上变大变小、彩色糖纸把白光变成红光——他不仅在"玩"，他在建构对世界的理解。</div>
+          </div>
+        </div>
+
+        <!-- 瑞吉欧: 自然物拼贴 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🍃</span>
+            <span class="activity-name">自然物拼贴</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">✨ 瑞吉欧</span>
+            <span class="meta-tag">⏱ 15-20分钟</span>
+            <span class="meta-tag">🎯 多媒介表达 · 美学 · 精细动作</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">瑞吉欧的核心理念之一是"<strong>孩子有一百种语言</strong>"——不仅仅是说话和画画，树叶、石头、黏土、光影都是表达方式。自然物拼贴让孩子用天然材料"说话"。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">户外捡来的树叶、小花瓣、细树枝、种子、小石子；白纸或卡纸；白乳胶；一个小托盘</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">活动步骤</div>
+            <ul class="act-list">
+              <li><strong>收集</strong>：散步时和孩子一起捡拾自然物</li>
+              <li><strong>摆放</strong>：回家后把自然物放在托盘上，让孩子自由摆放在白纸上</li>
+              <li><strong>粘贴</strong>：如果孩子想"固定"他的作品，你帮他在背面涂白乳胶</li>
+              <li><strong>展示</strong>：把作品贴在墙上——"这是你用树叶和花瓣做的艺术"</li>
+              <li><strong>不强求"像什么"</strong>——孩子可能只是把树叶排成一排，那就是他的表达</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 皮克勒: 自由运动 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🦵</span>
+            <span class="activity-name">自由运动时间</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🟦 皮克勒</span>
+            <span class="meta-tag">⏱ 不限时，每天有</span>
+            <span class="meta-tag">🎯 大运动 · 自主发展 · 身体自信</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">皮克勒方法的基石：<strong>自由运动</strong>。当成人不干预孩子的运动发展（不教坐、不扶站、不牵着走），孩子反而能更好地发展身体能力。2岁孩子需要的是：安全的运动空间 + 成人的信任 + 不干预。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">怎么做</div>
+            <ul class="act-list">
+              <li><strong>准备安全空间</strong>：清理出一块空地，铺上地垫</li>
+              <li><strong>提供适龄的攀爬物</strong>：一个小台阶、一个矮凳、靠垫堆成的小坡</li>
+              <li><strong>你坐在旁边</strong>：观察，不伸手。只要没有危险，不要干预</li>
+              <li><strong>孩子摔倒时</strong>：保持平静，不惊呼。观察他是否能自己爬起来</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">皮克勒式"不干预"的尺度</div>
+            <div class="act-text">不干预 ≠ 不管。你的手在附近但不碰他。他的安全是你的底线，但他的尝试空间是你的信任。关键原则：给孩子机会自己解决问题，你的存在是安全网，不是拐杖。</div>
+          </div>
+        </div>
+
+        <!-- 皮克勒: 照料中的对话 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">💝</span>
+            <span class="activity-name">照料时间：高质量的2分钟</span>
+            <span class="activity-age">0-36个月</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🟦 皮克勒</span>
+            <span class="meta-tag">⏱ 每次照料时</span>
+            <span class="meta-tag">🎯 尊重 · 信任 · 语言 · 连接</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">皮克勒最革命性的理念之一：<strong>照料时间就是教育时间</strong>。换尿布、穿衣服、洗脸这些日常照料，不是"需要快速完成的杂务"，而是与孩子建立信任关系的重要时刻。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">具体做法（以换尿布为例）</div>
+            <ul class="act-list">
+              <li><strong>提前告知</strong>："宝宝，妈妈要给你换尿布了"</li>
+              <li><strong>等待回应</strong>：给孩子几秒钟放下手里的"工作"</li>
+              <li><strong>描述动作</strong>："现在我要把裤子脱下来了"</li>
+              <li><strong>邀请参与</strong>："你可以自己把小屁股抬起来吗？"</li>
+              <li><strong>完成后感谢</strong>："换好了，谢谢你配合"</li>
+            </ul>
+          </div>
+          <div class="warn-box">
+            <div class="warn-title">⚠ 对比常见做法</div>
+            <div class="warn-text">孩子正玩得投入时一把抱起来放倒→他大哭反抗→你一边按着他一边快速换完。皮克勒式：提前告知→等待→请他配合→感谢。多花1分钟，但长期来看，越尊重孩子，孩子越愿意配合。</div>
+          </div>
+        </div>
+
+        <!-- 福禄贝尔: 积木 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🧱</span>
+            <span class="activity-name">福禄贝尔积木搭建</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🟢 福禄贝尔</span>
+            <span class="meta-tag">⏱ 15-20分钟</span>
+            <span class="meta-tag">🎯 空间感知 · 几何启蒙 · 创造力</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">福禄贝尔发明了"恩物"——球体、立方体、圆柱体等几何形状的积木。他认为这些形状是自然创造万物的基本元素，孩子通过操作理解"整体由部分构成"的数学思维。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备材料</div>
+            <div class="act-text">简单几何积木（方块、三角柱、圆柱），或用纸盒DIY：方形纸盒、卷纸芯（圆柱）、积木块</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">活动方式</div>
+            <ul class="act-list">
+              <li>把积木倒出来，让孩子自己摸、堆、排</li>
+              <li>你示范搭一个小塔，孩子自然会模仿</li>
+              <li>分类游戏："把圆形的放在一起""把能滚动的挑出来"</li>
+              <li>滚动实验：球和圆柱能滚，方块不会滚——让孩子自己去发现</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 福禄贝尔: 种豆子 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🌱</span>
+            <span class="activity-name">种豆子</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🟢 福禄贝尔 · 🌿 华德福</span>
+            <span class="meta-tag">⏱ 每周5分钟</span>
+            <span class="meta-tag">🎯 责任感 · 生命教育 · 观察力</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">最简单的做法：绿豆芽</div>
+            <ul class="act-list">
+              <li><strong>第1天</strong>：把几颗绿豆放在湿棉花上，放在透明杯子里</li>
+              <li><strong>第2-5天</strong>：每天让孩子用喷壶喷一点水，观察发芽</li>
+              <li><strong>第7天</strong>：看到小苗长出来——"这是你种的豆子！"</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">为什么重要</div>
+            <div class="act-text">福禄贝尔把幼儿园称为"儿童的花园"，认为孩子在花园里工作是完整的教育。种植物让孩子体验等待、观察、责任——比任何说教都深刻。</div>
+          </div>
+        </div>
+
+        <!-- 森林教育: 泥巴厨房 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🫧</span>
+            <span class="activity-name">泥巴厨房</span>
+            <span class="activity-age">24m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🌲 森林教育</span>
+            <span class="meta-tag">⏱ 30分钟+</span>
+            <span class="meta-tag">🎯 感官 · 创造力 · 自然连接</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">森林教育认为<strong>泥巴是最好的玩具</strong>。用泥土、水、沙子、树叶做"饭"——揉泥巴、搅拌、倒水、装饰——这是2岁孩子能玩最久的游戏之一。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">准备</div>
+            <div class="act-text">一小块泥土地或沙坑、一壶水、几个旧碗和勺子、几片树叶和树枝。穿旧衣服，不要怕脏。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">孩子会做什么</div>
+            <div class="act-text">把水和土搅成泥巴 → 用勺子舀到碗里 → 插上树叶当"菜" → 端给你"妈妈吃" → 继续加水变成泥汤 → 倒掉重来。整个过程30-60分钟不厌倦——这就是专注力。</div>
+          </div>
+          <div class="warn-box">
+            <div class="warn-title">⚠ 不</div>
+            <div class="warn-text">不要说"太脏了"。如果你无法接受泥巴，就等在旁边让孩子玩，你负责回家后的清洗。把"脏"看成"孩子正在深度学习的证据"。</div>
+          </div>
+        </div>
+
+        <!-- 森林教育: 雨天探险 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">☔</span>
+            <span class="activity-name">雨天探险</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🌲 森林教育</span>
+            <span class="meta-tag">⏱ 20-30分钟</span>
+            <span class="meta-tag">🎯 自然体验 · 韧性 · 感官</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">森林教育的座右铭："<strong>没有坏天气，只有不合适的衣服。</strong>"雨天不是躲在屋里的理由，而是全新的感官体验。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">出去做什么</div>
+            <ul class="act-list">
+              <li><strong>踩水坑</strong>——哪个孩子不爱？</li>
+              <li><strong>接雨水</strong>——伸出手，感受雨滴在手心</li>
+              <li><strong>看水坑里的涟漪</strong>——雨滴打在水面上，一圈一圈</li>
+              <li><strong>找蜗牛和蚯蚓</strong>——雨后它们会出来</li>
+              <li><strong>听雨声</strong>——雨打在树叶上、屋顶上、伞上，声音不一样</li>
+            </ul>
+          </div>
+          <div class="act-section">
+            <div class="act-label">为什么重要</div>
+            <div class="act-text">孩子在室内学到"下雨=不能出去"，这传递了"不适=要避免"。森林教育的理念是：孩子需要体验不同的天气，学会适应而不是回避。这是"韧性"的训练。</div>
+          </div>
+        </div>
+
+        <!-- 陈鹤琴: 生活自理 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">👟</span>
+            <span class="activity-name">"凡是儿童自己能做的，让他自己做"</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🇨🇳 陈鹤琴·活教育</span>
+            <span class="meta-tag">⏱ 日常生活中</span>
+            <span class="meta-tag">🎯 独立性 · 自信心 · 责任感</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">中国幼教之父陈鹤琴"活教育"原则第一条：<strong>凡是儿童自己能够做的，应当让他自己做</strong>。这和蒙台梭利的"帮助我自己做"不谋而合。"做中教、做中学、做中求进步"。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">2岁孩子可以"自己做"什么</div>
+            <div class="act-text">
+              ✅ 自己用勺子吃饭（即使洒一半）<br>
+              ✅ 自己脱袜子（最容易的独立第一步）<br>
+              ✅ 自己拿杯子喝水<br>
+              ✅ 自己把换下来的尿布扔到垃圾桶<br>
+              ✅ 自己拿/放绘本到书架上<br>
+              ✅ 帮忙把菜从袋子里拿出来<br>
+              ✅ 把脏衣服放进洗衣篮<br>
+              ✅ 收拾自己的玩具（在帮助下）
+            </div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">陈鹤琴"积极暗示"原则</div>
+            <div class="act-text">不说"不要跑"→说"我们慢慢走"。不说"不要洒"→说"两只手端稳稳的"。不说"怎么又弄脏了"→说"没关系，我们一起擦干净"。</div>
+          </div>
+        </div>
+
+        <!-- 综合: 晨圈 -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <span class="activity-icon">🎵</span>
+            <span class="activity-name">晨圈：唱歌与手指谣</span>
+            <span class="activity-age">18m+</span>
+          </div>
+          <div class="activity-meta">
+            <span class="meta-tag">🌿 华德福</span>
+            <span class="meta-tag">⏱ 5-10分钟</span>
+            <span class="meta-tag">🎯 节奏感 · 语言 · 模仿 · 连接</span>
+          </div>
+          <div class="act-section">
+            <div class="act-label">理念来源</div>
+            <div class="act-text">华德福每天以"晨圈"开始——围成一个圈，唱歌、做手指谣、念韵律诗。用<strong>身体感受节奏</strong>。2岁孩子通过观察和模仿自然融入。</div>
+          </div>
+          <div class="act-section">
+            <div class="act-label">在家怎么做</div>
+            <ul class="act-list">
+              <li>每天吃完早餐后，和你面对面坐着</li>
+              <li>唱一首简单的歌，配上手指动作。例如：<br>
+                "一只小猪胖嘟嘟"（双手握拳）→"两只大耳像扇子"（手指扇动）→"一条尾巴卷又卷"（手指绕圈）</li>
+              <li>不要求孩子跟做——他可能只是看着你，几周后他会开始模仿</li>
+              <li>同一首歌持续唱几周——重复给孩子安全感</li>
+            </ul>
+          </div>
+          <div class="tip-box">
+            <div class="tip-title">💡 推荐</div>
+            <div class="tip-text">传统童谣如《小星星》《两只老虎》《小白兔》都适合。关键是固定、重复、温馨——不是表演，是连接。</div>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          <div class="quote-text">这么多理念，最终指向同一件事：把孩子当作一个完整的、有能力的、值得尊重的人。选择适合你家庭节奏的那几个活动，固定下来，坚持下去，比什么都重要。</div>
         </div>
       </div>
     </div>
 
-    <!-- 实践 -->
-    <div class="tab-page" id="page-practice">
-      <div class="page-title">家庭实践指导</div>
-      <div class="intro-box">
-        <div class="intro-text">提炼自《家庭中的儿童》，可直接操作。如有疑惑再回看书。</div>
-      </div>
+    <!-- ==================== 挑战 ==================== -->
+    <div class="tab-page" id="page-challenges">
+      <div class="page-title">常见挑战与应对 <span class="en">Common Challenges</span></div>
 
-      <!-- 子标签切换 -->
-      <div class="sub-tab-bar">
-        <button class="sub-tab active" onclick="switchSubTab('env')">环境</button>
-        <button class="sub-tab" onclick="switchSubTab('games')">游戏</button>
-        <button class="sub-tab" onclick="switchSubTab('mind')">思想</button>
-      </div>
-
-      <!-- 环境 -->
-      <div class="sub-content active" id="sub-env">
-        <div class="section">
-          <div class="section-title">一、孩子专属活动区</div>
-          <div class="action-list">
-            <div class="action-item">
-              <span class="action-num">1</span>
-              <div class="action-content">
-                <div class="action-label">低矮的架子</div>
-                <div class="action-desc">孩子能自己够到，不需要大人帮忙拿取和放回</div>
-              </div>
-            </div>
-            <div class="action-item">
-              <span class="action-num">2</span>
-              <div class="action-content">
-                <div class="action-label">适合尺寸的家具</div>
-                <div class="action-desc">小桌子小椅子，洗手台旁放小凳子</div>
-              </div>
-            </div>
-            <div class="action-item">
-              <span class="action-num">3</span>
-              <div class="action-content">
-                <div class="action-label">固定工作空间</div>
-                <div class="action-desc">家里一个角落，铺地垫，摆孩子可独立取用的物品</div>
-              </div>
-            </div>
+      <!-- 挑战1 -->
+      <div class="section">
+        <div class="section-title">挑战一：说"不" / 发脾气</div>
+        <div class="card">
+          <div class="card-title">原因</div>
+          <div class="card-desc">2岁孩子自我意识萌芽，但语言能力还不足以充分表达自己，挫折感容易导致情绪爆发。这不是故意的挑战，是发展阶段的正常表现。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">应对策略</div>
+          <div class="card-desc">
+            <ul class="act-list">
+              <li><strong>共情</strong>："我知道你很生气，因为积木倒了"——说出他的感受</li>
+              <li><strong>提供有限选择</strong>："你想穿红色还是蓝色？"（不是"穿衣服！"）</li>
+              <li><strong>提前预告</strong>："再过5分钟我们要回家了"</li>
+              <li><strong>保持平静</strong>：你的平静是孩子情绪的安全锚。如果你也爆发，孩子会更害怕</li>
+              <li><strong>不说教</strong>：发脾气时不要讲道理，等情绪过了再说</li>
+            </ul>
           </div>
         </div>
-
-        <div class="section">
-          <div class="section-title">二、真实物品</div>
-          <div class="action-list">
-            <div class="action-item">
-              <span class="action-num">厨</span>
-              <div class="action-content">
-                <div class="action-label">厨房用品</div>
-                <div class="action-desc">小木勺、小刷子、小抹布、小扫帚</div>
-              </div>
-            </div>
-            <div class="action-item">
-              <span class="action-num">日</span>
-              <div class="action-content">
-                <div class="action-label">日常用品</div>
-                <div class="action-desc">小水壶、小碗、小杯子、安全剪刀</div>
-              </div>
-            </div>
-            <div class="action-item">
-              <span class="action-num">自然</span>
-              <div class="action-content">
-                <div class="action-label">自然物品</div>
-                <div class="action-desc">石头、贝壳、树叶、木块、纽扣、羽毛</div>
-              </div>
-            </div>
-          </div>
+        <div class="warn-box">
+          <div class="warn-title">⚠ 不要做</div>
+          <div class="warn-text">不要用"再哭就不要你了"之类的话。不要在孩子哭的时候强行讲道理。不要因为孩子发脾气就取消活动——这是在用恐惧控制，不是在教育。</div>
         </div>
+      </div>
 
-        <div class="section">
-          <div class="section-title">检查清单</div>
-          <div class="card">
-            <div class="check-item">孩子能自己拿到属于他的物品吗？</div>
-            <div class="check-item">物品用完后能放回原位吗？</div>
-            <div class="check-item">有适合孩子尺寸的家具吗？</div>
-            <div class="check-item">提供的是真实物品吗？</div>
+      <!-- 挑战2 -->
+      <div class="section">
+        <div class="section-title">挑战二：秩序感带来的固执</div>
+        <div class="card">
+          <div class="card-title">典型表现</div>
+          <div class="card-desc">东西不放对位置就哭、出门必须走固定路线、程序不能变、吃饭必须用固定碗筷。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">背后的原因</div>
+          <div class="card-desc">孩子正在通过外部秩序建构内部秩序——大脑需要对世界有可预测的规律。这不是任性，是发展需要。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">应对策略</div>
+          <div class="card-desc">
+            <ul class="act-list">
+              <li><strong>理解而非对抗</strong>：这是发展需要，不是故意捣乱</li>
+              <li><strong>配合</strong>：在可能的范围内保持一致性</li>
+              <li><strong>提前预告变化</strong>："今天我们去公园要走另一条路，因为……"</li>
+              <li><strong>利用秩序感</strong>：让孩子参与物归原位——他喜欢这个</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- 游戏 -->
-      <div class="sub-content" id="sub-games">
-        <div class="section">
-          <div class="section-title">日常生活类</div>
-          <div class="game-grid">
-            <div class="game-item">
-              <div class="game-name">倒水游戏</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">两个小杯子来回倒，底下铺毛巾。</div>
-              <div class="game-key">关键词：专注、手眼协调</div>
-            </div>
-            <div class="game-item">
-              <div class="game-name">剥食物</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">剥桔子瓣、剥豆子、剥鸡蛋壳。剥完全家人吃。</div>
-              <div class="game-key">关键词：手指力量、成就感</div>
-            </div>
-            <div class="game-item">
-              <div class="game-name">洗手工作</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">固定步骤：湿手→搓手→冲水→擦干</div>
-              <div class="game-key">关键词：秩序感、自理</div>
-            </div>
-            <div class="game-item">
-              <div class="game-name">走线</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">胶带贴直线，赤脚沿线走。5-10分钟。</div>
-              <div class="game-key">关键词：平衡、专注</div>
-            </div>
-          </div>
+      <!-- 挑战3 -->
+      <div class="section">
+        <div class="section-title">挑战三：不肯自己吃饭 / 穿衣</div>
+        <div class="card">
+          <div class="card-title">可能的原因</div>
+          <div class="card-desc">之前被过度帮助，失去了自己做事的动力；或者曾经尝试但被批评（"弄得到处都是"）；或者单纯在测试边界。</div>
         </div>
-
-        <div class="section">
-          <div class="section-title">感官探索类</div>
-          <div class="game-grid">
-            <div class="game-item">
-              <div class="game-name">触摸袋</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">不同材质物品（光滑/粗糙/软/硬），闭眼摸。</div>
-              <div class="game-key">关键词：触觉、语言</div>
-            </div>
-            <div class="game-item">
-              <div class="game-name">颜色分类</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">红黄蓝，按颜色分到碗里。</div>
-              <div class="game-key">关键词：颜色、分类</div>
-            </div>
-            <div class="game-item">
-              <div class="game-name">套杯/套盒</div>
-              <span class="game-age">18个月+</span>
-              <div class="game-desc">大小不同，从大到小叠。</div>
-              <div class="game-key">关键词：大小序列</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <div class="section-title">活动原则</div>
-          <div class="card">
-            <div class="check-item">示范一次后，给孩子独立完成的空间？</div>
-            <div class="check-item">孩子专注时，成人保持安静观察？</div>
-            <div class="check-item">活动后，孩子有机会把物品放回原位？</div>
-            <div class="check-item">孩子真的在"工作"而非被"考问"？</div>
+        <div class="card">
+          <div class="card-title">应对策略</div>
+          <div class="card-desc">
+            <ul class="act-list">
+              <li><strong>退后一步</strong>：忍住不帮，即使很慢很乱</li>
+              <li><strong>准备合适的环境</strong>：适合尺寸的餐具、容易穿脱的衣服</li>
+              <li><strong>拆分步骤</strong>：先练习最后一步（自己拉上拉链），再逐步独立完成</li>
+              <li><strong>不评价</strong>：不说"你真棒"，说"你自己穿好了"——自我评价代替外部评价</li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <!-- 思想 -->
-      <div class="sub-content" id="sub-mind">
-        <div class="section">
-          <div class="section-title">一、关于"帮助"</div>
-          <div class="mind-card">
-            <div class="mind-quote">"永远不要帮助一个孩子去做他自己说'我自己来'就能做的事。"</div>
-            <div class="mind-desc">——这是蒙台梭利最核心的一句话。请记住它。</div>
+      <!-- 挑战4 -->
+      <div class="section">
+        <div class="section-title">挑战四：专注力短</div>
+        <div class="card">
+          <div class="card-title">正常值</div>
+          <div class="card-desc">2岁孩子的专注力一般在5-15分钟，这是正常的。不要用成人的标准要求孩子。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">如何培养专注力</div>
+          <div class="card-desc">
+            <ul class="act-list">
+              <li><strong>不打扰</strong>：孩子专注时不要说话（哪怕是"你真棒"）</li>
+              <li><strong>减少声光电玩具</strong>：电子玩具是被动刺激，不是主动专注</li>
+              <li><strong>一次只给少量选择</strong>：2-3个活动选择足够</li>
+              <li><strong>尊重重复</strong>：反复做同一件事不是无聊，是深度学习</li>
+              <li><strong>观察孩子的兴趣</strong>：跟着孩子的兴趣走，专注会更持久</li>
+            </ul>
           </div>
-          <div class="mind-card">
-            <div class="mind-title">怎么判断该不该帮？</div>
-            <div class="mind-item">问自己：是在发展他的能力，还是在代替他完成任务？</div>
-            <div class="mind-item">孩子努力尝试但做不到——可以帮</div>
-            <div class="mind-item">孩子能自己做到——请等</div>
-            <div class="mind-item">纯粹为了节省时间——绝对不该帮</div>
+        </div>
+      </div>
+
+      <!-- 挑战5 -->
+      <div class="section">
+        <div class="section-title">挑战五：社交冲突（抢玩具）</div>
+        <div class="card">
+          <div class="card-title">为什么</div>
+          <div class="card-desc">2岁孩子以"平行游戏"为主——各玩各的，不是真正分享的年龄。抢玩具不是因为自私，是因为还没有"物品所有权"的概念。</div>
+        </div>
+        <div class="card">
+          <div class="card-title">应对策略</div>
+          <div class="card-desc">
+            <ul class="act-list">
+              <li><strong>不强迫分享</strong>：这个年龄还没发展出分享的概念</li>
+              <li><strong>准备多个相同的玩具</strong>：避免不必要的冲突</li>
+              <li><strong>用语言帮助表达</strong>："他在玩，等他玩完你再玩"</li>
+              <li><strong>示范分享</strong>：大人做分享的示范，但不强迫孩子做</li>
+            </ul>
           </div>
-          <div class="mind-card warning">
-            <div class="mind-title">警惕</div>
-            <div class="mind-item">"帮忙30秒"vs"等待10分钟"——那10分钟换来几年独立</div>
-            <div class="mind-item">"太慢了，还是我来吧"——这是孩子的节奏，不是你的</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 教育理念 ==================== -->
+    <div class="tab-page" id="page-philosophies">
+      <div class="page-title">教育理念全景 <span class="en">Educational Philosophies</span></div>
+
+      <div class="quote-box">
+        <div class="quote-text">没有一种理念是"唯一正确的"。最好的教育理念是适合你的孩子、你的家庭、你的价值观的那一个。</div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">一图看懂：六大国际理念 + 中国理念</div>
+
+        <table class="compare-table">
+          <tr><th style="width:64px;">理念</th><th>一句话核心</th><th>对2岁家庭最实用的点</th></tr>
+          <tr>
+            <td><strong>蒙台梭利</strong></td>
+            <td>追随孩子，有准备的环境</td>
+            <td>低矮架子、真实物品、不打扰的专注时间</td>
+          </tr>
+          <tr>
+            <td><strong>瑞吉欧</strong></td>
+            <td>环境是第三位老师</td>
+            <td>美与光的环境、观察记录、多媒介表达</td>
+          </tr>
+          <tr>
+            <td><strong>华德福</strong></td>
+            <td>保护童年，节奏与模仿</td>
+            <td>固定节奏、简单玩具、大量户外、少屏幕</td>
+          </tr>
+          <tr>
+            <td><strong>皮克勒</strong></td>
+            <td>尊重式照料，自由运动</td>
+            <td>换尿布/喂饭时的尊重对话、不干预自由运动</td>
+          </tr>
+          <tr>
+            <td><strong>福禄贝尔</strong></td>
+            <td>恩物与游戏，幼儿园起源</td>
+            <td>简单几何形状玩具、唱歌游戏、园艺</td>
+          </tr>
+          <tr>
+            <td><strong>高瞻</strong></td>
+            <td>计划-工作-回顾</td>
+            <td>给孩子有限选择、让他自己决定做什么</td>
+          </tr>
+          <tr>
+            <td><strong>森林教育</strong></td>
+            <td>大自然是最好的教室</td>
+            <td>每天户外、不怕脏、适度冒险</td>
+          </tr>
+          <tr>
+            <td><strong>陈鹤琴（中国）</strong></td>
+            <td>活教育，做中教</td>
+            <td>凡是孩子能做的让他自己做、培养习惯</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ====== 蒙台梭利 ====== -->
+      <div class="section">
+        <div class="section-title">蒙台梭利 Montessori（已贯穿全文）</div>
+        <div class="phil-card">
+          <div class="phil-header">
+            <span class="phil-name">玛丽亚·蒙台梭利</span>
+            <span class="phil-origin">意大利 · 1870-1952</span>
+          </div>
+          <div class="phil-quote">"永远不要帮助一个孩子去做他自己说'我自己来'就能做的事。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：孩子有内在的发展蓝图（"精神胚胎"），成人的角色是准备环境、提供材料、观察等待，而不是"教"。0-6岁儿童拥有吸收性心智，通过敏感期驱动发展。</div>
+          <div class="phil-principles">
+            <span class="pp">吸收性心智</span>
+            <span class="pp">敏感期</span>
+            <span class="pp">有准备的环境</span>
+            <span class="pp">自由与纪律</span>
+            <span class="pp">观察者角色</span>
+          </div>
+          <div class="phil-apply"><strong>对2岁家庭</strong>：设置低矮架子让孩子独立取物；提供真实物品（陶瓷杯、木勺）而非塑料玩具；每天至少30分钟不打扰的自由工作；示范而非说教。本指南全文基于蒙氏理念。</div>
+        </div>
+      </div>
+
+      <!-- ====== 瑞吉欧 ====== -->
+      <div class="section">
+        <div class="section-title">瑞吉欧 Reggio Emilia</div>
+        <div class="phil-card reggio">
+          <div class="phil-header">
+            <span class="phil-name">洛里斯·马拉古齐</span>
+            <span class="phil-origin">意大利 · 1920-1994</span>
+          </div>
+          <div class="phil-quote">"孩子有一百种语言，一百种表达世界的方式。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：瑞吉欧强调孩子有"一百种语言"——绘画、雕塑、音乐、建构、语言等都是表达方式。教师是"倾听者"和"记录者"，课程基于孩子的兴趣生成（项目式），环境本身是"第三位老师"。</div>
+          <div class="phil-principles">
+            <span class="pp">一百种语言</span>
+            <span class="pp">环境是第三位老师</span>
+            <span class="pp">项目式探索</span>
+            <span class="pp">倾听与记录</span>
+            <span class="pp">合作学习</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的3件事：</strong><br>
+            ① <strong>用光与美装点环境</strong>——瑞吉欧非常重视环境的美感。在家里给孩子布置一个"美的角落"：一束鲜花、一块暖色地毯、自然光、孩子作品的展示墙。<br>
+            ② <strong>记录孩子的"语言"</strong>——拍下孩子的画、录下他说的话、展示他的作品。记录不是评比，而是"我在听你说话"。<br>
+            ③ <strong>多媒介表达</strong>——除了说话，给孩子颜料、黏土、积木、乐器——让孩子用不同的"语言"表达自己。
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 华德福 ====== -->
+      <div class="section">
+        <div class="section-title">华德福 Waldorf / 斯坦纳 Steiner</div>
+        <div class="phil-card waldorf">
+          <div class="phil-header">
+            <span class="phil-name">鲁道夫·斯坦纳</span>
+            <span class="phil-origin">奥地利 · 1861-1925</span>
+          </div>
+          <div class="phil-quote">"接收孩子时心怀敬畏，教育他们时心怀爱意，送他们离开时心怀自由。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：华德福教育强调"慢"——保护童年，不提前进行智力教育。0-7岁以意志和身体发展为主，通过模仿学习。核心是：<strong>节奏</strong>（每日/每周/每季的固定节律）、<strong>模仿</strong>（成人做有意义的事，孩子自然模仿）、<strong>想象</strong>（简单玩具激发想象力）、<strong>自然</strong>（亲近自然、敬畏自然）。</div>
+          <div class="phil-principles">
+            <span class="pp">节奏与重复</span>
+            <span class="pp">保护童年</span>
+            <span class="pp">模仿学习</span>
+            <span class="pp">天然材质</span>
+            <span class="pp">延迟屏幕</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的3件事：</strong><br>
+            ① <strong>建立"呼吸节奏"</strong>——华德福认为一天应该有"呼"（自由玩耍、户外）和"吸"（安静活动、听故事）的交替。观察作息表，确保两者平衡。<br>
+            ② <strong>用天然简单的玩具</strong>——一块丝绸、一个松果、几个木块、一只布偶，比声光电塑料玩具好得多。简单的玩具激发想象力，复杂的玩具让孩子被动。<br>
+            ③ <strong>建立家庭仪式</strong>——早起歌、饭前感恩、睡前故事。小仪式给孩子安全感，也建构家庭的独特记忆。
+          </div>
+          <div class="warn-box">
+            <div class="warn-title">⚠ 与蒙氏的不同</div>
+            <div class="warn-text">华德福反对早期智力教育和屏幕时间，认为2岁孩子不需要认字、数数等"学术"活动。而蒙氏不反对认知启蒙，只是强调通过感官体验自然习得。两者都强调保护童年，但华德福更"保护主义"，蒙氏更"信任孩子的潜能"。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 皮克勒 ====== -->
+      <div class="section">
+        <div class="section-title">皮克勒 Pikler / Lóczy</div>
+        <div class="phil-card pikler">
+          <div class="phil-header">
+            <span class="phil-name">艾米·皮克勒</span>
+            <span class="phil-origin">匈牙利 · 1902-1984</span>
+          </div>
+          <div class="phil-quote">"让孩子自由地运动，意味着信任孩子自己的发展节奏。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：皮克勒方法是0-3岁阶段最值得了解的理念之一。两大核心：<strong>尊重式照料</strong>（换尿布、喂饭、洗澡时把婴儿当作完整的个体，做什么都提前告知、等待回应）和<strong>自由运动</strong>（不教孩子坐、站、走，让孩子按自己的节奏发展运动能力）。</div>
+          <div class="phil-principles">
+            <span class="pp">尊重式照料</span>
+            <span class="pp">自由运动发展</span>
+            <span class="pp">不干预的玩耍</span>
+            <span class="pp">成人稳定在场</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的3件事：</strong><br>
+            ① <strong>照料时间就是教育时间</strong>——换尿布、穿衣服时，不要一边刷手机一边机械操作。看着孩子的眼睛，告诉他"我现在要给你换尿布了，请等一下"。等待他的回应。这2分钟的高质量互动比任何玩具都有价值。<br>
+            ② <strong>不打断自由运动</strong>——孩子正在努力爬上一个台阶时，不要伸手去扶。只要没有危险，让他自己尝试。信任他的身体知道怎么做。<br>
+            ③ <strong>"我在，但我不干预"</strong>——皮克勒式陪伴：你安静地坐在旁边，做自己的事（比如缝纫、看书），孩子在旁边自由玩耍。你的存在就是安全感，你的不干预就是信任。
+          </div>
+          <div class="tip-box">
+            <div class="tip-title">💡 皮克勒与蒙氏的关系</div>
+            <div class="tip-text">两者很多理念相通——都强调观察、不干预、尊重孩子。皮克勒更聚焦0-3岁婴幼儿照料，蒙氏覆盖面更广（0-12岁）。可以简单理解为：皮克勒是"0-3岁照料段的蒙氏"。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 福禄贝尔 ====== -->
+      <div class="section">
+        <div class="section-title">福禄贝尔 Fröbel</div>
+        <div class="phil-card froebel">
+          <div class="phil-header">
+            <span class="phil-name">弗里德里希·福禄贝尔</span>
+            <span class="phil-origin">德国 · 1782-1852</span>
+          </div>
+          <div class="phil-quote">"游戏是儿童发展的最高阶段。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：福禄贝尔创办了世界上第一所"幼儿园"（Kindergarten，意为"儿童的花园"）。他强调游戏是儿童学习的方式，发明了"恩物"（Gifts）——一套几何形状的积木和材料，让孩子通过操作理解形状、大小、数量、空间关系。他是"玩中学"理念的奠基人。</div>
+          <div class="phil-principles">
+            <span class="pp">恩物与操作</span>
+            <span class="pp">游戏即学习</span>
+            <span class="pp">园艺与自然</span>
+            <span class="pp">几何启蒙</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的2件事：</strong><br>
+            ① <strong>简单几何积木</strong>——福禄贝尔的"恩物"理念今天仍然适用：一组简单的积木（球体、立方体、圆柱体），孩子通过堆叠、排列、分类来理解世界。不需要昂贵的玩具。<br>
+            ② <strong>种植物</strong>——和孩子一起种一颗豆子或一盆花。浇水、观察发芽、长叶——这是生命教育，也是耐心和责任的培养。
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 高瞻 ====== -->
+      <div class="section">
+        <div class="section-title">高瞻 HighScope</div>
+        <div class="phil-card highscope">
+          <div class="phil-header">
+            <span class="phil-name">戴维·韦卡特</span>
+            <span class="phil-origin">美国 · 1960s</span>
+          </div>
+          <div class="phil-quote">"主动学习：孩子通过与人、材料、事件和想法的互动来建构自己的理解。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：高瞻课程的核心是"主动参与式学习"。最著名的特色是"计划-工作-回顾"循环——孩子自己决定要做什么（计划），然后执行（工作），最后反思（回顾）。成人通过支持性的互动促进孩子的发展，而不是直接教导。</div>
+          <div class="phil-principles">
+            <span class="pp">计划-工作-回顾</span>
+            <span class="pp">主动学习</span>
+            <span class="pp">关键经验</span>
+            <span class="pp">小组时间</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的2件事：</strong><br>
+            ① <strong>给孩子有限的选择</strong>——"今天上午你想串珠子还是倒水？"（提供2-3个选项）。让孩子自己决定做什么，然后让他做完。这比"你想做什么？"（太开放）和"我们来串珠子"（太指令）都好。<br>
+            ② <strong>简单的回顾</strong>——活动结束后，和孩子聊两句："你今天做了什么呀？""你喜欢倒水还是串珠子？"帮他回顾自己的选择，建立"我选择了、我完成了"的体验。
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 森林教育 ====== -->
+      <div class="section">
+        <div class="section-title">森林教育 Forest School</div>
+        <div class="phil-card forest">
+          <div class="phil-header">
+            <span class="phil-name">北欧起源 · 1950s</span>
+            <span class="phil-origin">丹麦/瑞典 → 全球</span>
+          </div>
+          <div class="phil-quote">"没有坏天气，只有不合适的衣服。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：森林教育主张无论天气如何，孩子每天在户外林地中学习。通过爬树、玩泥巴、生火、用工具等真实体验发展身体能力、风险评估能力和对自然的敬畏。老师的作用是管理风险而不是消除风险。</div>
+          <div class="phil-principles">
+            <span class="pp">户外即教室</span>
+            <span class="pp">适度冒险</span>
+            <span class="pp">自然材料</span>
+            <span class="pp">韧性培养</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的2件事：</strong><br>
+            ① <strong>每天户外，风雨无阻</strong>——小雨天穿上雨衣雨靴出去踩水坑；冷天多穿一层出去看霜。孩子需要体验不同的天气，而不是只在"好天气"出门。<br>
+            ② <strong>允许"适度冒险"</strong>——爬矮墙、走不太平的路、拿小石头、在斜坡上跑。在安全的前提下，让孩子自己判断"我行不行"。摔倒后的爬起就是最好的韧性训练。
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 国内理念 ====== -->
+      <div class="section">
+        <div class="section-title">中国本土教育理念</div>
+
+        <div class="phil-card chinese">
+          <div class="phil-header">
+            <span class="phil-name">陈鹤琴 · "活教育"</span>
+            <span class="phil-origin">中国 · 1892-1982</span>
+          </div>
+          <div class="phil-quote">"凡是儿童自己能够做的，应当让他自己做。凡是儿童自己能够想的，应当让他自己想。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：陈鹤琴被誉为"中国幼教之父"，他提出的"活教育"三目标——<strong>做中教、做中学、做中求进步</strong>。他反对灌输式教育，强调从生活出发、从自然出发、从直接经验出发。他的"十七条教学原则"中包括：凡是儿童自己能做的让他自己做、用比赛的方法来增进效率、积极的暗示胜于消极的命令等。与蒙台梭利"帮助我自己做"的思想高度吻合。</div>
+          <div class="phil-principles">
+            <span class="pp">做中教做中学</span>
+            <span class="pp">凡是儿童自己能做的让他自己做</span>
+            <span class="pp">从生活中学习</span>
+            <span class="pp">积极的暗示</span>
+          </div>
+          <div class="phil-apply">
+            <strong>对2岁家庭最实用的3件事：</strong><br>
+            ① <strong>"凡是儿童自己能做的，让他自己做"</strong>——自己吃饭、自己穿鞋、自己收拾玩具。和蒙台梭利的"帮助我自己做"异曲同工。<br>
+            ② <strong>积极的暗示，不要消极的命令</strong>——说"我们慢慢走"而不是"不要跑"；说"小椅子累了，我们送他回家"而不是"把椅子放好"。2岁孩子对"不"的指令理解有限，正向引导更有效。<br>
+            ③ <strong>用游戏化的方式</strong>——"我们来比赛谁先把玩具送回家"而不是"快收玩具"。陈鹤琴认为比赛（不是竞争性比赛，是自我挑战）能激发孩子的积极性。
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">二、关于"观察"</div>
-          <div class="mind-card">
-            <div class="mind-quote">观察是教育的第一步。不观察就干预，就像不看路就开车。</div>
-            <div class="mind-desc">先观察，你会惊讶于孩子自己的能力。</div>
+        <div class="phil-card chinese">
+          <div class="phil-header">
+            <span class="phil-name">陶行知 · "生活即教育"</span>
+            <span class="phil-origin">中国 · 1891-1946</span>
           </div>
-          <div class="mind-card">
-            <div class="mind-title">不要做</div>
-            <div class="mind-item">不要在孩子专注时说话（哪怕是"你真棒"）</div>
-            <div class="mind-item">不要打断孩子的重复（重复是学习，不是无聊）</div>
-            <div class="mind-item">不要替孩子做他正在努力做的事</div>
+          <div class="phil-quote">"生活即教育，社会即学校，教学做合一。"</div>
+          <div class="phil-core"><strong>核心理念</strong>：陶行知师从杜威，将实用主义教育思想中国化。他强调生活本身就是教育——不是只有在教室里的才是学习。做饭是学习、打扫是学习、购物是学习。教育不是为生活做准备，教育就是生活本身。</div>
+          <div class="phil-apply">
+            <strong>对2岁家庭的启示</strong>：带孩子去菜市场认识蔬菜水果、让他参与洗菜淘米、出门看到洒水车告诉他"那是洒水车"——生活中的每一刻都是教育。不需要刻意设计的"早教课"，真正的生活体验就是最好的早教。
           </div>
         </div>
 
-        <div class="section">
-          <div class="section-title">三、关于"等待"</div>
-          <div class="mind-card">
-            <div class="mind-quote">等待是给孩子最好的礼物。这表示你尊重他需要的时间。</div>
-            <div class="mind-desc">我们太急了。慢一点，孩子需要时间。</div>
+        <div class="phil-card modern">
+          <div class="phil-header">
+            <span class="phil-name">当代中国早教现状与趋势</span>
+            <span class="phil-origin">融合与发展</span>
           </div>
-          <div class="mind-card">
-            <div class="mind-title">日常中的"等待"</div>
-            <div class="mind-item">问完问题后——等5秒</div>
-            <div class="mind-item">孩子做一件事——等他做完</div>
-            <div class="mind-item">计划改变——提前告诉孩子</div>
+          <div class="phil-core"><strong>现状特点</strong>：目前中国早教市场呈现"多元融合"的态势。蒙台梭利是最国际化的早教理念，在华有大量蒙氏园。华德福、瑞吉欧也有追随者。同时，中国家庭普遍高度重视早期教育，但也存在"过度早教""起跑线焦虑"的问题。</div>
+          <div class="phil-principles">
+            <span class="pp">蒙氏本土化</span>
+            <span class="pp">国学启蒙</span>
+            <span class="pp">感统训练</span>
+            <span class="pp">早教焦虑</span>
+          </div>
+          <div class="phil-apply">
+            <strong>在中国家庭中值得注意的几点：</strong><br>
+            ① <strong>蒙氏本土化</strong>——中国的蒙氏教育往往更强调集体纪律和"学习成果"，与原版的"跟随孩子"有张力。如果你选择蒙氏园，观察老师是"观察者"还是"教导者"。<br>
+            ② <strong>早教机构 ≠ 早教</strong>——每周一两节早教课不是早教。真正的早教发生在每天的日常生活里——你如何和孩子说话、如何回应他的需求、家庭氛围如何。<br>
+            ③ <strong>警惕"起跑线"焦虑</strong>——2岁孩子不需要认字、背唐诗、学英语。他需要的是：被尊重的互动、可以自由探索的空间、不被打扰的专注时间、和一个情绪稳定的成人。<br>
+            ④ <strong>国学启蒙要适龄</strong>——如果想让宝宝接触中文韵律，听几首声律启蒙、唱几句童谣就够。2岁不需要背诵三字经弟子规（不理解的内容背诵没有意义）。
+          </div>
+          <div class="warn-box">
+            <div class="warn-title">⚠ 特别提醒</div>
+            <div class="warn-text">市面上很多"早教班"利用家长焦虑推销。2岁孩子最需要的是父母的陪伴、家庭的安全感、自由探索的空间。这些多少钱都买不到，也是任何早教班给不了的。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== 融合实践 ====== -->
+      <div class="section">
+        <div class="section-title">如何融合这些理念？一个2岁家庭的日常</div>
+
+        <div class="card">
+          <div class="card-title">不必忠于某一派，根据你的家庭情况"取各家之长"</div>
+          <div class="card-desc">
+            <table class="compact-table">
+              <tr><th>时间段</th><th>活动</th><th>借鉴的理念</th></tr>
+              <tr><td>起床</td><td>提前10分钟，让孩子自己穿鞋袜</td><td>蒙氏·独立性</td></tr>
+              <tr><td>换尿布</td><td>看着眼睛说"我要给你换尿布了"</td><td>皮克勒·尊重式照料</td></tr>
+              <tr><td>上午工作</td><td>孩子自己选活动（倒水/拼图/积木）</td><td>蒙氏·自由选择 + 高瞻·计划</td></tr>
+              <tr><td>户外</td><td>即使阴天也出去走走</td><td>森林教育·没有坏天气</td></tr>
+              <tr><td>午餐</td><td>孩子参与摆碗筷</td><td>陶行知·生活即教育</td></tr>
+              <tr><td>自由玩耍</td><td>木块+丝绸，不干预</td><td>华德福·简单玩具+想象力</td></tr>
+              <tr><td>傍晚</td><td>一起浇花</td><td>福禄贝尔·园艺</td></tr>
+              <tr><td>睡前</td><td>回顾今天做了什么</td><td>瑞吉欧·倾听与记录</td></tr>
+            </table>
           </div>
         </div>
 
-        <div class="final-quote">
-          <div class="final-text">你不需要做"完美"的父母。只做一件事——在孩子需要时提供帮助；在孩子不需要时，安静等待。</div>
+        <div class="quote-box">
+          <div class="quote-text">所有好的教育理念都指向同一个方向：把孩子当作一个完整的、有能力的、值得尊重的人。</div>
         </div>
       </div>
     </div>
@@ -1332,45 +2023,39 @@
       <span class="tab-icon">🏠</span>
       <span class="tab-text">首页</span>
     </button>
-    <button class="tab-item" onclick="switchTab('age')">
-      <span class="tab-icon">📅</span>
-      <span class="tab-text">月龄</span>
-    </button>
-    <button class="tab-item" onclick="switchTab('domain')">
+    <button class="tab-item" onclick="switchTab('activities')">
       <span class="tab-icon">🎯</span>
-      <span class="tab-text">领域</span>
+      <span class="tab-text">活动库</span>
     </button>
-    <button class="tab-item" onclick="switchTab('practice')">
-      <span class="tab-icon">💡</span>
-      <span class="tab-text">实践</span>
+    <button class="tab-item" onclick="switchTab('challenges')">
+      <span class="tab-icon">💪</span>
+      <span class="tab-text">挑战</span>
+    </button>
+    <button class="tab-item" onclick="switchTab('philosophies')">
+      <span class="tab-icon">🌏</span>
+      <span class="tab-text">理念</span>
     </button>
   </div>
 </div>
 
 <script>
-  // Tab navigation - using onclick for better iOS compatibility
   function switchTab(pageId) {
-    const tabItems = document.querySelectorAll('.tab-item');
-    const tabPages = document.querySelectorAll('.tab-page');
-
-    tabItems.forEach(t => t.classList.remove('active'));
-    document.querySelector('.tab-item[data-page="' + pageId + '"]').classList.add('active');
-
-    tabPages.forEach(p => p.classList.remove('active'));
+    const items = document.querySelectorAll('.tab-item');
+    const pages = document.querySelectorAll('.tab-page');
+    const tabOrder = { 'home':0, 'activities':1, 'challenges':2, 'philosophies':3 };
+    const idx = tabOrder[pageId];
+    items.forEach((t,i) => t.classList.toggle('active', i === idx));
+    pages.forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + pageId).classList.add('active');
-
     document.querySelector('.page-content').scrollTop = 0;
   }
 
-  // Sub tab navigation (for practice page)
   function switchSubTab(subId) {
-    const subTabs = document.querySelectorAll('.sub-tab');
-    const subContents = document.querySelectorAll('.sub-content');
-
-    subTabs.forEach(t => t.classList.remove('active'));
-    document.querySelector('.sub-tab[data-sub="' + subId + '"]').classList.add('active');
-
-    subContents.forEach(c => c.classList.remove('active'));
+    const tabs = document.querySelectorAll('.sub-tab');
+    const contents = document.querySelectorAll('.sub-content');
+    tabs.forEach(t => t.classList.remove('active'));
+    contents.forEach(c => c.classList.remove('active'));
+    tabs.forEach(t => { if(t.textContent.includes(subId === 'daily'?'日常生活':subId==='sensory'?'感官探索':subId==='language'?'语言发展':subId==='math'?'数学启蒙':subId==='motor'?'运动发展':'多元理念')) t.classList.add('active'); });
     document.getElementById('sub-' + subId).classList.add('active');
   }
 </script>
